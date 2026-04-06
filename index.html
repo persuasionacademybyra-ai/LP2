@@ -1,0 +1,3045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dark Seduction Masterclass by RA — Persuasion Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700;1,800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400;1,600&family=Barlow:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #0A1120;
+  --navy2:   #0F1A2E;
+  --navy3:   #162240;
+  --navy4:   #1E3054;
+  --gold:    #C9A84C;
+  --gold2:   #F0DC9A;
+  --gold3:   #E8C96A;
+  --white:   #FFFFFF;
+  --muted:   #B8C8E0;
+  --dimmed:  #7A9AC0;
+  --glass-bg: rgba(14, 24, 44, 0.55);
+  --glass-border: rgba(201, 168, 76, 0.18);
+  --glow-gold: rgba(201, 168, 76, 0.35);
+  --glow-blue: rgba(80, 140, 220, 0.2);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Barlow', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ─── SCROLL PROGRESS BAR ─── */
+#scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, #C9A84C, #F0DC9A, #C9A84C);
+  background-size: 200% auto;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(201,168,76,0.7), 0 0 22px rgba(201,168,76,0.35);
+  animation: progressShimmer 2s linear infinite;
+  pointer-events: none;
+}
+@keyframes progressShimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+
+
+/* ─── GLOBAL NOISE LAYER ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ─── BACKGROUND ORBS ─── */
+.bg-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+.orb1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%); top: -200px; right: -150px; animation: float1 18s ease-in-out infinite; }
+.orb2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(50,100,200,0.1) 0%, transparent 70%); bottom: 10%; left: -150px; animation: float2 22s ease-in-out infinite; }
+.orb3 { width: 350px; height: 350px; background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: float1 15s ease-in-out infinite reverse; }
+
+@keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,40px)} }
+@keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,-30px)} }
+
+/* ─── GLASSMORPHISM CARD ─── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid var(--glass-border);
+  border-radius: 2px;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+.glass:hover {
+  border-color: rgba(201, 168, 76, 0.45);
+  box-shadow: 0 0 32px rgba(201, 168, 76, 0.15), 0 0 80px rgba(201, 168, 76, 0.06);
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 60px;
+  background: rgba(10, 17, 32, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+}
+.nav-brand { font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+.nav-links { display: flex; gap: 40px; }
+.nav-links a { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dimmed); text-decoration: none; transition: color 0.25s; }
+.nav-links a:hover { color: var(--gold2); }
+.nav-cta {
+  font-size: 12px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 11px 28px; border: none;
+  color: #0A1120; text-decoration: none;
+  background: linear-gradient(135deg, #C9A84C 0%, #F0DC9A 50%, #C9A84C 100%);
+  background-size: 200% auto;
+  transition: background-position 0.4s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.nav-cta:hover {
+  background-position: right center;
+  box-shadow: 0 0 28px rgba(201,168,76,0.55), 0 0 60px rgba(201,168,76,0.2);
+  color: #0A1120;
+}
+
+/* ─── SECTIONS ─── */
+section { position: relative; z-index: 1; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 140px 40px 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 28px;
+  justify-content: center;
+}
+.hero-eyebrow-line { width: 48px; height: 2px; background: var(--gold); }
+.hero-eyebrow-text {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); opacity: 0.9;
+}
+
+.hero-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 5.5vw, 72px);
+  font-weight: 800;
+  line-height: 1.0;
+  color: var(--white);
+  margin-bottom: 6px;
+  animation: fadeUp 0.9s ease both;
+}
+.hero-headline-italic {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 5.5vw, 72px);
+  font-weight: 800;
+  font-style: italic;
+  line-height: 1.05;
+  color: var(--gold);
+  margin-bottom: 36px;
+  animation: fadeUp 0.9s 0.15s ease both;
+  text-shadow: 0 0 60px rgba(201,168,76,0.3);
+}
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+
+.hero-sub {
+  font-family: 'Source Serif 4', serif;
+  font-size: clamp(15px, 1.7vw, 18px);
+  color: var(--muted);
+  line-height: 1.72;
+  max-width: 680px;
+  margin: 0 auto 52px;
+  animation: fadeUp 0.9s 0.3s ease both;
+}
+
+.hero-sub strong { color: var(--white); font-weight: 600; }
+
+.hero-cta-wrap {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeUp 0.9s 0.45s ease both;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 48px;
+  background: linear-gradient(135deg, #C9A84C 0%, #F0DC9A 50%, #C9A84C 100%);
+  background-size: 200% auto;
+  color: #0A1120;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: background-position 0.4s ease, box-shadow 0.4s ease, transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.2), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.btn-primary:hover {
+  background-position: right center;
+  box-shadow: 0 0 40px rgba(201,168,76,0.55), 0 0 80px rgba(201,168,76,0.25), 0 4px 24px rgba(0,0,0,0.4);
+  transform: translateY(-2px);
+}
+.btn-primary:hover::after { opacity: 1; }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 40px;
+  background: transparent;
+  color: var(--white);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+}
+.btn-secondary:hover {
+  border-color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.04);
+  box-shadow: 0 0 28px rgba(255,255,255,0.06);
+}
+
+.hero-stats {
+  display: flex;
+  gap: 60px;
+  margin-top: 72px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeUp 0.9s 0.6s ease both;
+}
+.stat-item { text-align: center; }
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px; font-weight: 800;
+  color: var(--gold); line-height: 1.0;
+  text-shadow: 0 0 30px rgba(201,168,76,0.4);
+}
+.stat-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--dimmed);
+  margin-top: 6px;
+}
+.stat-divider { width: 1px; background: rgba(201,168,76,0.2); height: 60px; align-self: center; }
+
+/* ─── PROBLEM SECTION ─── */
+.problem {
+  padding: 120px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.section-eyebrow {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 20px;
+}
+.section-eyebrow-line { width: 40px; height: 2px; background: var(--gold); flex-shrink: 0; }
+.section-eyebrow-text {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--gold);
+}
+.section-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 62px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.section-headline em {
+  font-style: italic;
+  color: var(--gold);
+  text-shadow: 0 0 40px rgba(201,168,76,0.3);
+}
+.section-sub {
+  font-family: 'Source Serif 4', serif;
+  font-size: clamp(16px, 1.8vw, 20px);
+  color: var(--muted);
+  line-height: 1.68;
+  margin-bottom: 60px;
+  max-width: 700px;
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: rgba(201,168,76,0.08);
+}
+.problem-item {
+  background: var(--navy2);
+  padding: 36px 40px;
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+  transition: background 0.3s;
+}
+.problem-item:hover { background: rgba(15, 26, 48, 0.95); }
+.problem-icon {
+  font-size: 22px; font-weight: 700; color: #C0392B;
+  flex-shrink: 0; line-height: 1.4; font-family: 'Barlow', sans-serif;
+}
+.problem-text {
+  font-family: 'Source Serif 4', serif;
+  font-size: 18px; color: var(--muted); line-height: 1.6;
+}
+.problem-text strong { color: var(--white); font-weight: 600; }
+
+.problem-quote {
+  margin-top: 60px;
+  padding: 40px 48px;
+  border-top: 2px solid var(--gold);
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+}
+.problem-quote-text {
+  font-family: 'Source Serif 4', serif;
+  font-size: clamp(19px, 2.2vw, 26px);
+  font-style: italic;
+  color: var(--gold2);
+  line-height: 1.65;
+}
+
+/* ─── WHAT YOU GET ─── */
+.what-you-get {
+  padding: 120px 40px;
+  background: rgba(14, 22, 40, 0.6);
+  position: relative;
+}
+.what-you-get::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+}
+.what-you-get::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+}
+.what-inner { max-width: 1200px; margin: 0 auto; }
+
+.chapters-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 60px;
+}
+
+.chapter-card {
+  padding: 36px 32px;
+  position: relative;
+  overflow: visible;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.chapter-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(201,168,76,0.08), transparent 65%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.chapter-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 55px rgba(201,168,76,0.24), 0 16px 48px rgba(0,0,0,0.48);
+}
+.chapter-card:hover::before { opacity: 1; }
+
+/* Shimmer sweep on hover */
+.chapter-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(201,168,76,0.13) 50%, transparent 70%);
+  background-size: 250% 100%;
+  background-position: 200% 0;
+  transition: background-position 0.55s ease;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 2;
+}
+.chapter-card:hover::after { background-position: -50% 0; }
+
+/* Chapter toggle hint */
+.chapter-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.75;
+  transition: opacity 0.2s;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none; /* card handles click */
+}
+.chapter-toggle::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(201,168,76,0.25);
+}
+.chapter-toggle-icon {
+  width: 18px; height: 18px;
+  border: 1px solid rgba(201,168,76,0.5);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.chapter-card:hover .chapter-toggle { opacity: 1; }
+
+/* ─── CHAPTER MODAL ─── */
+#chapterModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+#chapterModal.open { display: flex; }
+
+#chapterModalBackdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 10, 20, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: backdropIn 0.3s ease both;
+}
+@keyframes backdropIn { from { opacity: 0; } to { opacity: 1; } }
+
+#chapterModalBox {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: linear-gradient(160deg, #0F1A2E 0%, #0A1120 100%);
+  border: 1px solid rgba(201,168,76,0.35);
+  box-shadow: 0 0 80px rgba(201,168,76,0.18), 0 30px 80px rgba(0,0,0,0.7);
+  padding: 44px 44px 40px;
+  animation: modalIn 0.32s cubic-bezier(0.22,1,0.36,1) both;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201,168,76,0.3) transparent;
+}
+#chapterModalBox::-webkit-scrollbar { width: 4px; }
+#chapterModalBox::-webkit-scrollbar-track { background: transparent; }
+#chapterModalBox::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.3); border-radius: 2px; }
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* top gold accent line */
+#chapterModalBox::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #C9A84C 30%, #F0DC9A 50%, #C9A84C 70%, transparent);
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px; right: 18px;
+  width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  color: var(--dimmed);
+  cursor: pointer;
+  background: none; border: none;
+  transition: color 0.2s;
+  line-height: 1;
+}
+.modal-close:hover { color: var(--gold); }
+
+.modal-chapter-num {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.modal-chapter-num::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 3.5vw, 28px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.modal-title em { font-style: italic; color: var(--gold); }
+
+.modal-hook {
+  font-family: 'Source Serif 4', serif;
+  font-size: 15px;
+  color: var(--dimmed);
+  line-height: 1.65;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(201,168,76,0.12);
+}
+
+.modal-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--gold); opacity: 0.6;
+  margin-bottom: 14px;
+}
+
+.modal-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.modal-bullets li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-family: 'Source Serif 4', serif;
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.modal-bullets li::before {
+  content: '◆';
+  color: var(--gold);
+  font-size: 9px;
+  flex-shrink: 0;
+  margin-top: 4px;
+  opacity: 0.75;
+}
+
+.modal-excerpt {
+  font-family: 'Source Serif 4', serif;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--gold2);
+  line-height: 1.75;
+  padding: 18px 20px;
+  border-left: 2px solid rgba(201,168,76,0.4);
+  background: rgba(201,168,76,0.04);
+  margin-bottom: 28px;
+  opacity: 0.9;
+}
+
+.modal-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #0A1120;
+  background: linear-gradient(135deg, #C9A84C, #F0DC9A);
+  padding: 13px 28px;
+  text-decoration: none;
+  transition: box-shadow 0.3s, transform 0.2s;
+  width: 100%;
+  justify-content: center;
+}
+.modal-cta:hover {
+  box-shadow: 0 0 28px rgba(201,168,76,0.55);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+  #chapterModalBox { padding: 36px 24px 32px; }
+}
+
+.chapter-num {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 18px;
+  display: flex; align-items: center; gap: 10px;
+}
+.chapter-num::before { content: ''; width: 28px; height: 1px; background: var(--gold); flex-shrink: 0; }
+
+.chapter-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 800;
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+.chapter-title em { font-style: italic; color: var(--gold); }
+
+.chapter-hook {
+  font-family: 'Source Serif 4', serif;
+  font-size: 15px;
+  color: var(--dimmed);
+  line-height: 1.65;
+}
+
+/* ─── PULL QUOTE / TRANSFORMATION ─── */
+.transformation {
+  padding: 100px 40px;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.transformation-line {
+  width: 60px; height: 2px;
+  background: var(--gold);
+  margin: 0 auto 40px;
+}
+.transformation-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 50px);
+  font-weight: 700;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.3;
+  margin-bottom: 32px;
+  text-shadow: 0 0 80px rgba(201,168,76,0.15);
+}
+.transformation-quote em { color: var(--gold); font-style: italic; }
+.transformation-attr {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--dimmed);
+}
+
+/* ─── WHAT'S INSIDE ─── */
+.inside {
+  padding: 120px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.inside-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  margin-top: 60px;
+  background: rgba(201,168,76,0.06);
+}
+.inside-row {
+  background: var(--navy2);
+  display: flex;
+  gap: 20px;
+  padding: 28px 36px;
+  align-items: flex-start;
+  transition: background 0.3s;
+}
+.inside-row:hover { background: rgba(15,26,48,0.98); }
+.inside-tick {
+  font-size: 16px; font-weight: 700; color: var(--gold);
+  flex-shrink: 0; padding-top: 2px; font-family: 'Barlow', sans-serif;
+}
+.inside-text {
+  font-family: 'Source Serif 4', serif;
+  font-size: 17px; color: var(--muted); line-height: 1.6;
+}
+.inside-text strong { color: var(--white); font-weight: 600; }
+
+/* ─── BOOK MOCKUP / FEATURE ─── */
+.feature {
+  padding: 120px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.feature-content {}
+.feature-book {
+  position: sticky;
+  top: 120px;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 900px) {
+  .feature {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 80px 24px;
+  }
+  .feature-book {
+    position: relative;
+    top: auto;
+    order: -1;
+  }
+}
+.book-cover {
+  width: 300px;
+  aspect-ratio: 3/4;
+  background: linear-gradient(160deg, var(--navy3) 0%, #060D1A 100%);
+  border: 1px solid rgba(201,168,76,0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 32px;
+  position: relative;
+  box-shadow: 20px 20px 60px rgba(0,0,0,0.7), 0 0 60px rgba(201,168,76,0.1), inset 0 0 40px rgba(0,0,0,0.3);
+  transition: box-shadow 0.4s ease, transform 0.3s ease;
+}
+.book-cover:hover {
+  box-shadow: 24px 24px 70px rgba(0,0,0,0.8), 0 0 80px rgba(201,168,76,0.25), inset 0 0 40px rgba(0,0,0,0.3);
+  transform: perspective(800px) rotateY(-5deg);
+}
+.book-corner { position: absolute; width: 18px; height: 18px; border-color: var(--gold); border-style: solid; opacity: 0.5; }
+.book-corner.tl { top: 16px; left: 16px; border-width: 2px 0 0 2px; }
+.book-corner.tr { top: 16px; right: 16px; border-width: 2px 2px 0 0; }
+.book-corner.bl { bottom: 16px; left: 16px; border-width: 0 0 2px 2px; }
+.book-corner.br { bottom: 16px; right: 16px; border-width: 0 2px 2px 0; }
+.book-eyebrow {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 16px;
+}
+.book-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; font-weight: 800; color: var(--white);
+  line-height: 1.15; margin-bottom: 6px;
+}
+.book-title em { font-style: italic; color: var(--gold); }
+.book-rule { width: 44px; height: 1px; background: var(--gold); margin: 20px auto; }
+.book-byline {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); opacity: 0.7;
+}
+.book-meta {
+  position: absolute; bottom: -50px; left: 0; right: 0;
+  text-align: center;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--dimmed);
+}
+.book-glow {
+  position: absolute;
+  inset: -30px;
+  background: radial-gradient(ellipse at center, rgba(201,168,76,0.12), transparent 65%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.feature-list { margin-top: 36px; display: flex; flex-direction: column; gap: 18px; }
+.feature-item {
+  display: flex; gap: 18px; align-items: flex-start;
+  padding: 22px 26px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.feature-item:hover {
+  transform: translateX(6px);
+  box-shadow: 0 0 30px rgba(201,168,76,0.12);
+  border-color: rgba(201,168,76,0.4) !important;
+}
+.feature-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; font-weight: 800;
+  color: var(--gold); opacity: 0.4;
+  flex-shrink: 0; line-height: 1.0;
+}
+.feature-item-title {
+  font-family: 'Barlow', sans-serif;
+  font-size: 16px; font-weight: 700; color: var(--white);
+  margin-bottom: 6px; letter-spacing: 0.04em;
+}
+.feature-item-text {
+  font-family: 'Source Serif 4', serif;
+  font-size: 15px; color: var(--dimmed); line-height: 1.6;
+}
+
+/* ─── PRICING ─── */
+.pricing {
+  padding: 120px 40px;
+  text-align: center;
+  position: relative;
+}
+.pricing::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+}
+.pricing-inner { max-width: 600px; margin: 0 auto; }
+.price-card {
+  padding: 60px 56px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 60px;
+}
+.price-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.1), transparent 60%);
+  pointer-events: none;
+}
+.price-badge {
+  display: inline-block;
+  padding: 6px 20px;
+  border: 1px solid var(--gold);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 36px;
+}
+.price-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 80px; font-weight: 800; color: var(--white);
+  line-height: 1.0; margin-bottom: 8px;
+  text-shadow: 0 0 50px rgba(201,168,76,0.2);
+}
+.price-amount sup {
+  font-size: 36px; vertical-align: super; color: var(--gold);
+  font-family: 'Barlow', sans-serif; font-weight: 700;
+}
+.price-period {
+  font-size: 13px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--dimmed); margin-bottom: 40px;
+}
+.price-divider { width: 100%; height: 1px; background: rgba(201,168,76,0.15); margin-bottom: 36px; }
+.price-features { list-style: none; margin-bottom: 48px; display: flex; flex-direction: column; gap: 14px; }
+.price-features li {
+  display: flex; align-items: center; gap: 14px;
+  font-family: 'Source Serif 4', serif;
+  font-size: 17px; color: var(--muted); text-align: left;
+}
+.price-features li::before { content: '◆'; color: var(--gold); font-size: 9px; flex-shrink: 0; opacity: 0.8; }
+.price-features li strong { color: var(--white); font-weight: 600; }
+
+.btn-primary-large {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 22px 48px;
+  background: linear-gradient(135deg, #C9A84C 0%, #F0DC9A 50%, #C9A84C 100%);
+  background-size: 200% auto;
+  color: #0A1120 !important;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  justify-content: center;
+  transition: background-position 0.4s ease, box-shadow 0.4s ease, transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary-large:hover {
+  background-position: right center;
+  box-shadow: 0 0 50px rgba(201,168,76,0.6), 0 0 100px rgba(201,168,76,0.3), 0 6px 30px rgba(0,0,0,0.5);
+  transform: translateY(-3px);
+}
+
+.price-guarantee {
+  margin-top: 28px;
+  font-size: 13px; color: var(--dimmed); font-family: 'Source Serif 4', serif;
+  font-style: italic; line-height: 1.5;
+}
+
+/* ─── FINAL CTA ─── */
+.final-cta {
+  padding: 140px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(201,168,76,0.07), transparent 65%);
+}
+.final-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 800; line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.final-headline-italic {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 800; font-style: italic; line-height: 1.1;
+  color: var(--gold);
+  margin-bottom: 36px;
+  text-shadow: 0 0 60px rgba(201,168,76,0.35);
+}
+.final-sub {
+  font-family: 'Source Serif 4', serif;
+  font-size: 19px; color: var(--muted); line-height: 1.7;
+  max-width: 580px; margin: 0 auto 52px;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 40px 60px;
+  border-top: 1px solid rgba(201,168,76,0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; z-index: 1;
+}
+.footer-brand {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--gold); opacity: 0.7;
+}
+.footer-copy {
+  font-size: 12px; color: var(--dimmed); font-family: 'Source Serif 4', serif;
+}
+
+/* ─── HAMBURGER MENU ─── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: transparent;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--gold);
+  transition: all 0.3s ease;
+}
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(10,17,32,0.97);
+  z-index: 200;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-size: 22px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--muted); text-decoration: none;
+  transition: color 0.25s;
+}
+.mobile-menu a:hover { color: var(--gold2); }
+.mobile-menu-close {
+  position: absolute;
+  top: 24px; right: 24px;
+  font-size: 28px; color: var(--gold);
+  cursor: pointer; background: none; border: none;
+  line-height: 1;
+}
+@media (max-width: 900px) {
+  .nav-hamburger { display: flex; }
+}
+
+/* ─── FLOATING MOBILE CTA ─── */
+#floatingCTA {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 150;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #C9A84C 0%, #F0DC9A 50%, #C9A84C 100%);
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 -4px 32px rgba(201,168,76,0.4);
+}
+#floatingCTA.visible { transform: translateY(0); }
+#floatingCTA a {
+  color: #0A1120;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+@media (max-width: 900px) {
+  #floatingCTA { display: block; }
+}
+
+/* ─── URGENCY BANNER ─── */
+.urgency-banner {
+  background: rgba(201,168,76,0.07);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 2px;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.urgency-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #C0392B;
+  animation: pulse-dot 1.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes pulse-dot {
+  0%,100% { box-shadow: 0 0 0 0 rgba(192,57,43,0.5); }
+  50% { box-shadow: 0 0 0 6px rgba(192,57,43,0); }
+}
+.urgency-text {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted);
+}
+.urgency-text strong { color: var(--gold2); }
+
+/* ─── PRICE ANCHOR ─── */
+.price-original {
+  font-size: 18px; font-weight: 600;
+  color: var(--dimmed);
+  text-decoration: line-through;
+  margin-bottom: 4px;
+  letter-spacing: 0.05em;
+}
+.price-savings {
+  display: inline-block;
+  background: rgba(192,57,43,0.15);
+  border: 1px solid rgba(192,57,43,0.3);
+  color: #e07060;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 4px 12px;
+  margin-bottom: 12px;
+}
+
+/* ─── AUTHOR SECTION ─── */
+.author-section {
+  padding: 100px 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 60px;
+  align-items: start;
+}
+.author-avatar {
+  width: 180px; height: 180px;
+  border-radius: 2px;
+  background: linear-gradient(160deg, var(--navy3), #060D1A);
+  border: 1px solid rgba(201,168,76,0.3);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+.author-avatar::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(201,168,76,0.12), transparent 70%);
+}
+.author-avatar-initials {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px; font-weight: 800;
+  color: var(--gold); line-height: 1;
+  position: relative; z-index: 1;
+}
+.author-avatar-label {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--dimmed); position: relative; z-index: 1;
+}
+.author-content {}
+.author-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 800;
+  color: var(--white); margin-bottom: 6px;
+}
+.author-title {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 24px;
+  display: flex; align-items: center; gap: 10px;
+}
+.author-title::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+.author-bio {
+  font-family: 'Source Serif 4', serif;
+  font-size: 17px; color: var(--muted); line-height: 1.72;
+  margin-bottom: 24px;
+}
+.author-stats {
+  display: flex; gap: 32px; flex-wrap: wrap;
+}
+.author-stat {}
+.author-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; font-weight: 800; color: var(--gold);
+}
+.author-stat-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--dimmed); margin-top: 2px;
+}
+@media (max-width: 900px) {
+  .author-section {
+    grid-template-columns: 1fr;
+    padding: 72px 20px;
+    gap: 36px;
+  }
+  .author-avatar { width: 120px; height: 120px; }
+  .author-avatar-initials { font-size: 36px; }
+}
+
+/* ─── FAQ SECTION ─── */
+.faq-section {
+  padding: 100px 40px;
+  max-width: 820px;
+  margin: 0 auto;
+  background: rgba(14,22,40,0.4);
+}
+.faq-list { margin-top: 56px; }
+.faq-item {
+  border-top: 1px solid rgba(201,168,76,0.12);
+  padding: 28px 0;
+}
+.faq-item:last-child { border-bottom: 1px solid rgba(201,168,76,0.12); }
+.faq-question {
+  font-family: 'Barlow', sans-serif;
+  font-size: 18px; font-weight: 400;
+  color: var(--white); line-height: 1.35;
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+  user-select: none;
+}
+.faq-question:hover { color: var(--gold2); }
+.faq-icon {
+  width: 22px; height: 22px; flex-shrink: 0;
+  border: 1px solid rgba(201,168,76,0.4);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; color: var(--gold);
+  transition: transform 0.3s ease, background 0.25s;
+  margin-top: 2px;
+}
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+  background: rgba(201,168,76,0.12);
+}
+.faq-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease;
+  opacity: 0;
+}
+.faq-item.open .faq-answer { max-height: 800px; opacity: 1; }
+.faq-answer-inner {
+  font-family: 'Source Serif 4', serif;
+  font-size: 17px; color: var(--muted); line-height: 1.72;
+  padding-top: 18px;
+}
+.faq-answer-inner strong { color: var(--white); font-weight: 600; }
+@media (max-width: 900px) {
+  .faq-section { padding: 72px 20px; }
+  .faq-question { font-size: 17px; }
+}
+
+.gold-rule {
+  width: 60px; height: 2px;
+  background: var(--gold);
+  margin: 0 auto;
+}
+
+/* ─── HIDE CHAPTER PREVIEW (modal-only content) ─── */
+.chapter-preview {
+  display: none !important;
+}
+
+/* Chapter 13 — centred on desktop 3-col grid */
+@media (min-width: 901px) {
+  .ch13-card { grid-column: 2; }
+}
+
+/* ─── SCROLL REVEAL ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ─── GRID CLASSES ─── */
+.how-it-works-grid    { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+.research-stats-grid  { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; background: rgba(201,168,76,0.07); }
+.two-men-split        { display: grid; grid-template-columns: 1fr 2px 1fr; gap: 0; }
+
+/* ─── MECHANISM GRID ─── */
+.mechanism-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+.mechanism-card {
+  padding: 36px 32px;
+  border-top: 3px solid var(--gold);
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET  ≤ 900px
+══════════════════════════════════════════ */
+@media (max-width: 900px) {
+
+  /* ── NAV ── */
+  nav { padding: 16px 20px; gap: 12px; }
+  .nav-links { display: none; }
+  .nav-brand { font-size: 11px; letter-spacing: 0.15em; }
+  .nav-cta { padding: 9px 18px; font-size: 11px; }
+
+  /* ── HERO ── */
+  .hero { padding: 120px 20px 80px; }
+  .hero-eyebrow-text { font-size: 10px; letter-spacing: 0.18em; }
+  .hero-sub { font-size: 16px; margin-bottom: 36px; }
+  .hero-cta-wrap { flex-direction: column; align-items: center; gap: 12px; }
+  .btn-primary, .btn-secondary { width: 100%; max-width: 320px; justify-content: center; padding: 18px 28px; }
+  .hero-stats { gap: 24px; margin-top: 52px; flex-wrap: wrap; justify-content: center; }
+  .stat-divider { display: none; }
+  .stat-number { font-size: 32px; }
+
+  /* ── NAMED SECTION PADDING ── */
+  .problem      { padding: 72px 20px; }
+  .what-you-get { padding: 72px 20px; }
+  .inside       { padding: 72px 20px; }
+  .transformation { padding: 64px 20px; }
+  .final-cta    { padding: 80px 20px; }
+  .pricing      { padding: 72px 20px; }
+  .faq-section  { padding: 72px 20px; }
+
+  /* ── ALL INLINE-PADDED SECTIONS ── */
+  /* Targets every <section> that uses 100px/120px side padding in inline styles */
+  section[style*="padding:100px 40px"],
+  section[style*="padding: 100px 40px"],
+  section[style*="padding:120px 40px"],
+  section[style*="padding: 120px 40px"],
+  section[style*="padding:72px 40px"],
+  section[style*="padding: 72px 40px"],
+  section[style*="padding:80px 40px"],
+  section[style*="padding: 80px 40px"] {
+    padding: 72px 20px !important;
+  }
+  section[style*="padding:100px 40px 80px"],
+  section[style*="padding: 100px 40px 80px"] {
+    padding: 72px 20px 60px !important;
+  }
+  section[style*="padding:56px 40px"],
+  section[style*="padding: 56px 40px"] {
+    padding: 48px 20px !important;
+  }
+
+  /* ── NAMED CSS GRIDS → 1 col ── */
+  .problem-grid    { grid-template-columns: 1fr; }
+  .chapters-grid   { grid-template-columns: 1fr; }
+  .inside-grid     { grid-template-columns: 1fr; }
+  .how-it-works-grid   { grid-template-columns: 1fr !important; }
+  .mechanism-grid      { grid-template-columns: 1fr; gap: 16px; }
+  .mechanism-card      { padding: 28px 24px; }
+  .research-stats-grid { grid-template-columns: repeat(2,1fr) !important; }
+  .benefits-grid-2col  { grid-template-columns: 1fr !important; }
+  .two-men-split       { grid-template-columns: 1fr !important; }
+  .two-men-split > div:nth-child(2) { display: none !important; }
+  .before-after-row    { grid-template-columns: 1fr !important; }
+
+  /* ── INLINE-STYLE GRIDS (Her Reality, Pareto, What-You-Get 4-col, Product intro 2-col, Benefits) ── */
+  /* We target by class combinations and override with !important where needed */
+  .her-reality-grid,
+  .pareto-grid,
+  .product-intro-grid,
+  [class*="reveal"][style*="grid-template-columns:1fr 1fr"],
+  [class*="reveal"][style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 2px !important;
+  }
+  .pareto-grid { gap: 24px !important; }
+  /* 4-col what-you-get grid in product section */
+  .what-you-get-grid,
+  [class*="reveal"][style*="grid-template-columns:repeat(4,1fr)"],
+  [class*="reveal"][style*="grid-template-columns: repeat(4,1fr)"],
+  [class*="reveal"][style*="grid-template-columns:repeat(4, 1fr)"] {
+    grid-template-columns: repeat(2,1fr) !important;
+  }
+
+  /* ── CHAPTER CARDS ── */
+  .chapter-card { padding: 28px 22px; }
+  .chapter-card.glass { grid-column: auto !important; }
+
+  /* ── FEATURE / BOOK SECTION ── */
+  .feature { grid-template-columns: 1fr; gap: 48px; padding: 80px 20px; }
+  .feature-book { order: -1; position: relative; top: auto; }
+  .book-cover { width: 240px; }
+  .book-meta { bottom: -40px; }
+
+  /* ── PRICING ── */
+  .price-card { padding: 40px 24px; }
+  .price-amount { font-size: 72px; }
+
+  /* ── PROBLEM / INSIDE ITEMS ── */
+  .problem-item { padding: 24px 20px; }
+  .problem-quote { padding: 28px 24px; }
+  .inside-row { padding: 20px 24px; }
+
+  /* ── AUTHOR ── */
+  .author-section { grid-template-columns: 1fr; padding: 72px 20px; gap: 36px; }
+  .author-avatar { width: 120px; height: 120px; }
+  .author-avatar-initials { font-size: 36px; }
+
+  /* ── RESEARCH SECTION ── */
+  .research-credibility { padding: 72px 20px !important; }
+
+  /* ── FOOTER ── */
+  footer { flex-direction: column; gap: 10px; text-align: center; padding: 32px 20px; }
+  .footer-cta-strip { padding: 36px 20px !important; flex-direction: column !important; text-align: center; gap: 20px !important; }
+  .footer-cta-strip a { width: 100%; justify-content: center; padding: 16px 20px !important; }
+  .footer-base { padding: 24px 20px !important; flex-direction: column; text-align: center; gap: 10px; }
+  .footer-base > div[style*="display:flex"] { flex-wrap: wrap !important; justify-content: center !important; gap: 16px !important; }
+
+  /* ── SECTION HEADLINES ── */
+  .section-headline { font-size: clamp(28px, 7vw, 44px); }
+
+  /* ── CHAPTER PREVIEW ── */
+  .chapter-preview.open { max-height: 900px; }
+
+  /* ── PRODUCT MOCK: hide complex mock, show static card on mobile ── */
+  .product-mock-col { display: block !important; }
+  .product-mock-col > div:not(.mock-static-card) { display: none !important; }
+  .product-mock-col .mock-static-card { display: flex !important; }
+  /* and collapse the 2-col product intro grid to 1 col */
+  [style*="grid-template-columns:1fr 1fr; gap:56px"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — MOBILE  ≤ 700px
+══════════════════════════════════════════ */
+@media (max-width: 700px) {
+  /* Collapse research stats to 1 col */
+  .research-stats-grid { grid-template-columns: 1fr !important; }
+  /* Collapse what-you-get 4-col to 2-col on tablet */
+  .what-you-get-grid { grid-template-columns: repeat(2,1fr) !important; }
+  /* Collapse feature pills 4-col to 2-col on tablet */
+  .feature-pills-grid { grid-template-columns: repeat(2,1fr) !important; }
+  /* Pareto chart 2-col mini-grid inside card */
+  [style*="grid-template-columns:1fr 1fr; gap:12px"] {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — SMALL MOBILE  ≤ 480px
+══════════════════════════════════════════ */
+@media (max-width: 480px) {
+  nav { padding: 14px 16px; }
+  .nav-cta { padding: 8px 14px; font-size: 10px; }
+  .hero { padding: 100px 16px 72px; }
+  .hero-eyebrow-line { display: none; }
+  .problem      { padding: 56px 16px; }
+  .what-you-get { padding: 56px 16px; }
+  .inside       { padding: 56px 16px; }
+  .final-cta    { padding: 60px 16px; }
+  .feature      { padding: 56px 16px; }
+  .pricing      { padding: 56px 16px; }
+
+  section[style*="padding:100px 40px"],
+  section[style*="padding: 100px 40px"],
+  section[style*="padding:120px 40px"],
+  section[style*="padding: 120px 40px"],
+  section[style*="padding:72px 40px"],
+  section[style*="padding: 72px 40px"],
+  section[style*="padding:80px 40px"],
+  section[style*="padding: 80px 40px"] {
+    padding: 56px 16px !important;
+  }
+  section[style*="padding:100px 40px 80px"],
+  section[style*="padding: 100px 40px 80px"] {
+    padding: 56px 16px 48px !important;
+  }
+  section[style*="padding:56px 40px"],
+  section[style*="padding: 56px 40px"] {
+    padding: 40px 16px !important;
+  }
+
+  .book-cover { width: 200px; }
+  .price-card { padding: 28px 18px; }
+  .price-amount { font-size: 56px; }
+  .price-badge { font-size: 9px; letter-spacing: 0.2em; padding: 5px 14px; margin-bottom: 24px; }
+  .price-period { font-size: 11px; margin-bottom: 28px; }
+  .price-features { gap: 10px; margin-bottom: 32px; }
+  .price-features li { font-size: 14px; gap: 10px; }
+  .urgency-text { font-size: 10px; letter-spacing: 0.1em; }
+  .price-original { font-size: 15px; }
+  .btn-primary-large { padding: 18px 28px; font-size: 13px; letter-spacing: 0.12em; }
+  .chapter-card { padding: 24px 18px; }
+  .chapter-title { font-size: 19px; }
+  .price-card-intro { font-size: 14px !important; line-height: 1.65 !important; margin-bottom: 18px !important; }
+
+  /* Problem quote full bleed feel */
+  .problem-quote { padding: 24px 20px; margin: 40px -16px 0; border-radius: 0; }
+
+  /* Feature items tighter on tiny phones */
+  .feature-item { padding: 18px 20px; }
+  .feature-item-text { font-size: 14px; }
+  /* Feature pills 1-col on tiny screens */
+  .feature-pills-grid { grid-template-columns: 1fr !important; }
+  /* Guarantee block — stack on tiny screens */
+  [style*="display:flex; gap:20px; align-items:flex-start; text-align:left"] {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+  /* Nav CTA — shrink label on tiny screens */
+  .nav-cta { font-size: 10px; padding: 9px 14px; letter-spacing: 0.1em; }
+  /* Author stats — center on tiny screens */
+  .author-stats { justify-content: center; gap: 24px; }
+  /* Timeline steps — tighten gap on tiny screens */
+  [style*="display:flex; gap:32px; align-items:flex-start; padding:0 0 64px"],
+  [style*="display:flex; gap:32px; align-items:flex-start; padding:0 0 64px"],
+  [style*="display:flex; gap:32px; align-items:flex-start; padding:0;"] {
+    gap: 20px !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND ORBS -->
+<div id="scroll-progress"></div>
+<div class="bg-orb orb1"></div>
+<div class="bg-orb orb2"></div>
+<div class="bg-orb orb3"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Persuasion Academy · RA</div>
+  <div class="nav-links">
+    <a href="#chapters">The Modules</a>
+    <a href="#window">The Window</a>
+    <a href="#pricing">Get Access</a>
+    <a href="research.html" style="color:var(--gold);font-weight:700;position:relative;" onmouseover="this.style.color='var(--gold2)'" onmouseout="this.style.color='var(--gold)'">The Research <span style="font-size:9px;background:var(--gold);color:#0A1120;padding:2px 6px;border-radius:2px;font-weight:800;letter-spacing:0.06em;margin-left:4px;vertical-align:middle;">NEW</span></a>
+  </div>
+  <a href="#pricing" class="nav-cta">Get the Masterclass</a>
+  <button class="nav-hamburger" id="hamburgerBtn" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" id="mobileClose">✕</button>
+  <a href="#chapters" onclick="document.getElementById('mobileMenu').classList.remove('open')">What's Inside</a>
+  <a href="#window" onclick="document.getElementById('mobileMenu').classList.remove('open')">The Window</a>
+  <a href="#pricing" onclick="document.getElementById('mobileMenu').classList.remove('open')">Get Access</a>
+  <a href="research.html" onclick="document.getElementById('mobileMenu').classList.remove('open')" style="color:var(--gold);">The Research</a>
+  <a href="https://topmate.io/persuasion_academy_by_ra/2032749" class="btn-primary" target="_blank" rel="noopener" onclick="document.getElementById('mobileMenu').classList.remove('open')" style="margin-top:12px;">Start the Masterclass →</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <div class="hero-eyebrow-line"></div>
+    <div class="hero-eyebrow-text">Why good men keep losing to men who deserve it less</div>
+    <div class="hero-eyebrow-line"></div>
+  </div>
+
+  <div class="hero-headline">She liked you. Then disappeared.</div>
+  <div class="hero-headline-italic">And you still don't know why.</div>
+
+  <p class="hero-sub">
+    Every experience you have had — the silence after a real connection, the friendzone, the man she chose who gave her less — has a precise psychological explanation. <strong>This masterclass is that explanation.</strong>
+  </p>
+
+  <div class="hero-cta-wrap">
+    <a href="https://topmate.io/persuasion_academy_by_ra/2032749" class="btn-primary" target="_blank" rel="noopener">
+      Get Instant Access — ₹999
+      <span style="font-size:18px;">→</span>
+    </a>
+    <a href="#chapters" class="btn-secondary">
+      See What's Inside
+    </a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-number">13</div>
+      <div class="stat-label">Modules</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-number">50+</div>
+      <div class="stat-label">Research Sources</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-number" style="font-size:28px; line-height:1; letter-spacing:0.02em;">Apply</div>
+      <div class="stat-label" style="color:var(--gold);">From Tonight</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-number">∞</div>
+      <div class="stat-label">Lifetime Access</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── DOES THIS SOUND LIKE YOU ─── -->
+<section class="problem reveal" id="problem">
+  <div class="section-eyebrow">
+    <div class="section-eyebrow-line"></div>
+    <div class="section-eyebrow-text">Does This Sound Like You</div>
+  </div>
+  <div class="section-headline">You are not alone.<br><em>But you have been lied to.</em></div>
+  <p class="section-sub">Most men carrying these experiences believe the problem is them. It is not. Read through this list slowly.</p>
+
+  <div class="problem-grid">
+    <div class="problem-item">
+      <div class="problem-icon">✕</div>
+      <div class="problem-text">You approach a woman. The conversation goes well. You feel something real. Then she stops replying. <strong>No explanation. No closure. Just silence.</strong></div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-icon">✕</div>
+      <div class="problem-text">You get placed in the friend zone again. She tells you she sees you as a brother. Meanwhile you watch her chase men who treat her far worse than you ever would. <strong>You cannot make sense of it.</strong></div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-icon">✕</div>
+      <div class="problem-text">Every woman you approach already has a boyfriend. Or she is not looking for anything right now. Or she just got out of something. <strong>The timing is always wrong. The door is always just closed.</strong></div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-icon">✕</div>
+      <div class="problem-text">You gave everything to someone. You were present, loyal, genuinely invested. And she left anyway for a man who gave her far less. <strong>The heartbreak was not just pain. It was confusion.</strong></div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-icon">✕</div>
+      <div class="problem-text">You have replayed conversations in your head trying to find the moment it turned. You never find it. <strong>The rejection had no reason you could name and that is the part that never healed.</strong></div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-icon">✕</div>
+      <div class="problem-text">Most of your relationships have been one-sided. You invested more. You cared more. You tried harder. <strong>And somehow that trying is exactly what made you less desirable.</strong></div>
+    </div>
+  </div>
+
+  <div class="problem-quote glass">
+    <div class="problem-quote-text">"If any of this is familiar, you are not broken. You are simply operating without the map. Every experience on that list has a precise psychological explanation. And once you understand it, none of it will ever happen the same way again."</div>
+  </div>
+</section>
+
+<!-- ─── EMPATHY BRIDGE ─── -->
+<section style="padding:100px 40px; position:relative; z-index:1; background:rgba(14,22,40,0.55);">
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.25),transparent);"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.25),transparent);"></div>
+  <div style="max-width:820px; margin:0 auto; text-align:center;">
+    <div class="section-eyebrow reveal" style="justify-content:center; margin-bottom:20px;">
+      <div class="section-eyebrow-line"></div>
+      <div class="section-eyebrow-text">We Know How This Feels</div>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <p class="reveal" style="font-family:'Playfair Display',serif; font-size:clamp(20px,2.5vw,28px); font-style:italic; color:var(--gold2); line-height:1.68; margin-bottom:32px;">"You have probably spent more time alone than you ever planned. Not because you wanted to. Because nobody ever showed you why it kept not working."</p>
+    <p class="reveal" style="font-family:'Source Serif 4',serif; font-size:clamp(16px,1.8vw,19px); color:var(--muted); line-height:1.78; margin-bottom:24px;">There is a particular kind of loneliness that nobody talks about. Not the loud kind. The quiet kind. The kind that lives in Sunday evenings and crowded rooms and conversations that should have become something but did not. The kind that follows you into sleep and is still there when you wake up. You are surrounded by people and still feel it. That is not a character flaw. That is what happens when nobody teaches you the one thing that would have changed all of it.</p>
+    <p class="reveal" style="font-family:'Source Serif 4',serif; font-size:clamp(16px,1.8vw,19px); color:var(--muted); line-height:1.78; margin-bottom:24px;">Every rejection left the same quiet bruise. Not the sharp kind. The slow kind. The kind that makes you wonder if there is something fundamentally wrong with you that nobody will name. You did everything right. You were genuine. You were present. And she still pulled away. Nobody has ever given you a straight answer about why.</p>
+    <p class="reveal" style="font-family:'Source Serif 4',serif; font-size:clamp(16px,1.8vw,19px); color:var(--muted); line-height:1.78;">The advice you find online contradicts itself and none of it changes anything. The apps feel designed to remind you of what you do not have. You are doing everything you were told to do. <strong style="color:var(--white);">And the loneliness is still there.</strong></p>
+  </div>
+</section>
+
+<!-- ─── PAINFUL REALITY ─── -->
+<section style="padding:100px 40px; position:relative; z-index:1; background:rgba(10,17,32,0.85);">
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);"></div>
+  <div style="max-width:1000px; margin:0 auto;">
+    <div class="section-eyebrow reveal" style="margin-bottom:20px;">
+      <div class="section-eyebrow-line"></div>
+      <div class="section-eyebrow-text">The Reality Nobody Says Out Loud</div>
+    </div>
+    <div class="section-headline reveal">Dating is easier<br><em>for women. Brutal for men.</em></div>
+    <p class="reveal" style="font-family:'Source Serif 4',serif; font-size:clamp(16px,1.8vw,19px); color:var(--muted); line-height:1.75; max-width:700px; margin-bottom:28px;">This is not comfortable to say. But every man reading this already knows it is true.</p>
+
+    <!-- HER REALITY / YOUR REALITY — shown first so the pain lands before the data -->
+    <div class="reveal her-reality-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:2px; background:rgba(201,168,76,0.06); margin-bottom:40px;">
+      <div style="background:var(--navy2); padding:40px; border:1px solid rgba(201,168,76,0.1);">
+        <div style="font-size:11px; font-weight:700; letter-spacing:0.24em; text-transform:uppercase; color:var(--gold); margin-bottom:18px;">Her Reality</div>
+        <p style="font-family:'Source Serif 4',serif; font-size:16px; color:var(--muted); line-height:1.72; margin:0;">An average woman on a dating app receives more messages in a single day than most men receive in a month. Her inbox is full. Men are competing for her attention constantly. She does not need to learn how attraction works because options come to her. <strong style="color:var(--white);">She simply selects the best of what arrives.</strong></p>
+      </div>
+      <div style="background:var(--navy2); padding:40px; border:1px solid rgba(201,168,76,0.1);">
+        <div style="font-size:11px; font-weight:700; letter-spacing:0.24em; text-transform:uppercase; color:rgba(192,57,43,0.8); margin-bottom:18px;">Your Reality</div>
+        <p style="font-family:'Source Serif 4',serif; font-size:16px; color:var(--muted); line-height:1.72; margin:0;">You check the app at 11pm. Still no reply. You sent it three days ago. You put real effort into the conversation, the date, the follow-up. It ended with a polite goodbye and a silence that has not broken since. The imbalance is real and it is structural. <strong style="color:var(--white);">And every man who does not understand what creates desire makes it worse for every man who does not either.</strong></p>
+      </div>
+    </div>
+
+    <!-- PARETO COPY + CHART — data now hits harder because the pain has already landed -->
+    <div class="reveal pareto-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; margin-bottom:52px;">
+      <div>
+        <p style="font-family:'Source Serif 4',serif; font-size:clamp(16px,1.8vw,19px); color:var(--muted); line-height:1.8; margin:0 0 20px;">Studies on dating app behaviour tell you exactly how brutal the numbers are. The top <strong style="color:var(--white);">20% of men</strong> receive <strong style="color:var(--white);">roughly 80% of all female attention.</strong> The remaining 80% of men compete — desperately, invisibly — for what is left.</p>
+        <p style="font-family:'Source Serif 4',serif; font-size:clamp(16px,1.8vw,19px); color:var(--muted); line-height:1.8; margin:0 0 20px;">Not because those men are better people. Not because they are richer or more handsome. Because they understand something the other 80% do not. They understand what actually creates attraction.</p>
+        <p style="font-family:'Playfair Display',serif; font-size:clamp(17px,2vw,22px); font-style:italic; color:var(--gold2); line-height:1.55; margin:0;">That knowledge is learnable. This masterclass is exactly that knowledge.</p>
+      </div>
+      <!-- PARETO VISUAL CHART -->
+      <div style="background:rgba(10,14,26,0.9); border:1px solid rgba(201,168,76,0.18); padding:36px 32px; position:relative;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.5),transparent);"></div>
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.24em; text-transform:uppercase; color:var(--gold); margin-bottom:28px; text-align:center;">The Dating Market — Real Numbers</div>
+        <div style="display:flex; flex-direction:column; gap:16px; margin-bottom:28px;">
+          <div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:7px;">
+              <div style="font-family:'Barlow',sans-serif; font-size:12px; font-weight:700; color:var(--white);">Top 20% of men</div>
+              <div style="font-family:'Playfair Display',serif; font-size:18px; font-weight:800; color:var(--gold);">80%</div>
+            </div>
+            <div style="height:28px; background:rgba(255,255,255,0.04); border-radius:2px; overflow:hidden; position:relative;">
+              <div style="height:100%; width:80%; background:linear-gradient(90deg,#C9A84C,#F0DC9A); border-radius:2px; box-shadow:0 0 20px rgba(201,168,76,0.35);"></div>
+            </div>
+            <div style="font-family:'Source Serif 4',serif; font-size:11px; color:var(--dimmed); font-style:italic; margin-top:5px;">of all female attention received</div>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:7px;">
+              <div style="font-family:'Barlow',sans-serif; font-size:12px; font-weight:700; color:rgba(192,57,43,0.75);">Bottom 80% of men</div>
+              <div style="font-family:'Playfair Display',serif; font-size:18px; font-weight:800; color:rgba(192,57,43,0.75);">20%</div>
+            </div>
+            <div style="height:28px; background:rgba(255,255,255,0.04); border-radius:2px; overflow:hidden;">
+              <div style="height:100%; width:20%; background:linear-gradient(90deg,rgba(192,57,43,0.5),rgba(192,57,43,0.3)); border-radius:2px;"></div>
+            </div>
+            <div style="font-family:'Source Serif 4',serif; font-size:11px; color:var(--dimmed); font-style:italic; margin-top:5px;">of all female attention — split between them</div>
+          </div>
+        </div>
+        <div style="height:1px; background:rgba(201,168,76,0.1); margin-bottom:20px;"></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; text-align:center; margin-bottom:20px;">
+          <div style="background:rgba(201,168,76,0.05); border:1px solid rgba(201,168,76,0.12); padding:16px 12px;">
+            <div style="font-family:'Playfair Display',serif; font-size:26px; font-weight:800; color:var(--gold); line-height:1; text-shadow:0 0 20px rgba(201,168,76,0.3);">1 in 5</div>
+            <div style="font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--dimmed); margin-top:6px;">messages get a reply</div>
+          </div>
+          <div style="background:rgba(192,57,43,0.05); border:1px solid rgba(192,57,43,0.15); padding:16px 12px;">
+            <div style="font-family:'Playfair Display',serif; font-size:26px; font-weight:800; color:rgba(192,57,43,0.8); line-height:1;">4 in 5</div>
+            <div style="font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--dimmed); margin-top:6px;">disappear into silence</div>
+          </div>
+        </div>
+        <div style="font-family:'Source Serif 4',serif; font-size:11px; font-style:italic; color:rgba(201,168,76,0.4); text-align:center;">Based on OkCupid &amp; Hinge platform data</div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-bottom:32px; padding:32px 40px; border-left:3px solid var(--gold); background:rgba(10,14,26,0.6);">
+      <p style="font-family:'Source Serif 4',serif; font-size:clamp(16px,1.8vw,19px); color:var(--muted); line-height:1.8; margin:0;">The numbers do not lie. But the numbers are not the full story. Beneath the data is something older and more personal. Three dynamics that explain why the imbalance exists, why it compounds, and why most men never escape it.</p>
+    </div>
+
+    <div class="reveal" style="margin-top:2px; background:var(--navy2); border:1px solid rgba(201,168,76,0.15);">
+
+      <!-- Idea 1: Market Distortion -->
+      <div style="padding:40px 48px 32px; border-bottom:1px solid rgba(201,168,76,0.08);">
+        <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+          <div style="font-family:'Playfair Display',serif; font-size:36px; font-weight:800; color:var(--gold); opacity:0.35; line-height:1; flex-shrink:0;">01</div>
+          <p style="font-family:'Playfair Display',serif; font-size:clamp(18px,2vw,22px); font-style:italic; color:var(--gold2); line-height:1.6; margin:0;">"She simply selects the best of what arrives."</p>
+        </div>
+        <p style="font-family:'Source Serif 4',serif; font-size:17px; color:var(--muted); line-height:1.8; margin:0;">Years of men throwing themselves at women — desperate, performative, competing to be the most agreeable — has given the average woman a superinflated sense of her own value in the dating market. The result is a man who gives his genuine best and gets passed over for someone who does far less, simply because that someone understood something he did not.</p>
+      </div>
+
+      <!-- Idea 2: The Pedestal Effect -->
+      <div style="padding:40px 48px 32px; border-bottom:1px solid rgba(201,168,76,0.08);">
+        <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+          <div style="font-family:'Playfair Display',serif; font-size:36px; font-weight:800; color:var(--gold); opacity:0.35; line-height:1; flex-shrink:0;">02</div>
+          <p style="font-family:'Playfair Display',serif; font-size:clamp(18px,2vw,22px); font-style:italic; color:var(--gold2); line-height:1.6; margin:0;">"He puts her on a pedestal she never earned."</p>
+        </div>
+        <p style="font-family:'Source Serif 4',serif; font-size:17px; color:var(--muted); line-height:1.8; margin:0;">The damage runs both ways. A woman who has fifty men competing for her attention develops a distorted idea of what she deserves. A man who has been starved of positive signals for months develops a distorted idea of who he wants. The first woman to smile at him, text back consistently, or show any real warmth becomes everything to him. Not because she is exceptional, but because she is rare in his experience. He becomes obsessed. He over-invests. And she, swimming in options, loses interest in a man who handed her all his power before she did a single thing to deserve it.</p>
+      </div>
+
+      <!-- Idea 3: The Reversal -->
+      <div style="padding:40px 48px 48px;">
+        <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+          <div style="font-family:'Playfair Display',serif; font-size:36px; font-weight:800; color:var(--gold); opacity:0.35; line-height:1; flex-shrink:0;">03</div>
+          <p style="font-family:'Playfair Display',serif; font-size:clamp(18px,2vw,22px); font-style:italic; color:var(--gold2); line-height:1.6; margin:0;">"It is completely reversible once you understand what is actually happening."</p>
+        </div>
+        <p style="font-family:'Source Serif 4',serif; font-size:17px; color:var(--muted); line-height:1.8; margin:0 0 36px;"><strong style="color:var(--white);">This is not a character flaw.</strong> It is a predictable outcome of a broken dynamic. The imbalance is structural — but structure can be understood. And once you understand the mechanism, you are no longer subject to it.</p>
+        <div style="border-top:1px solid rgba(201,168,76,0.15); padding-top:32px; text-align:center;">
+          <p style="font-family:'Playfair Display',serif; font-size:clamp(22px,3vw,32px); font-weight:800; font-style:italic; color:var(--gold); line-height:1.35; margin:0; text-shadow:0 0 40px rgba(201,168,76,0.25);">The men who understand this<br>do not compete. They simply operate<br><span style="color:var(--white); font-style:normal;">on a different level entirely.</span></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── NOT YOUR FAULT ─── -->
+<section style="padding:100px 40px; position:relative; z-index:1; background:rgba(14,22,40,0.6);">
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.25),transparent);"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.25),transparent);"></div>
+  <div style="max-width:900px; margin:0 auto;">
+    <div class="section-eyebrow reveal" style="margin-bottom:20px;">
+      <div class="section-eyebrow-line"></div>
+      <div class="section-eyebrow-text">It Is Not Your Fault</div>
+    </div>
+    <div class="section-headline reveal">The world runs on<br><em>rules. So does attraction.</em></div>
+
+    <div style="margin-top:52px; display:flex; flex-direction:column; gap:24px;">
+      <div class="reveal glass" style="padding:36px 40px; border-left:3px solid var(--gold);">
+        <p style="font-family:'Source Serif 4',serif; font-size:17px; color:var(--muted); line-height:1.8; margin:0;">Physics has rules. Economics has rules. Human psychology has rules. Attraction is not random. It is not chemistry. It is not fate. It is a predictable biological and psychological process that follows documented principles and those principles were mapped decades ago by researchers studying thousands of people across dozens of countries.</p>
+      </div>
+      <div class="reveal glass" style="padding:36px 40px; border-left:3px solid rgba(201,168,76,0.3);">
+        <p style="font-family:'Source Serif 4',serif; font-size:17px; color:var(--muted); line-height:1.8; margin:0;">The problem is that most men were never taught any of this. Nobody sat them down and explained how desire forms, what sustains it, and what kills it. They were handed generic advice from the internet. Be yourself. Be kind. Be consistent. It sounds reasonable and it quietly destroys attraction every time it is followed too literally. And they have been following it ever since, getting the same results, wondering what they are doing wrong.</p>
+      </div>
+      <div class="reveal glass" style="padding:36px 40px; border-left:3px solid rgba(201,168,76,0.15);">
+        <p style="font-family:'Source Serif 4',serif; font-size:17px; color:var(--muted); line-height:1.8; margin:0;">Women never had to learn because they never had to. When men line up to compete for your attention, you do not need to understand the psychology of attraction. You just pick. The man who understands these rules does not need to compete. <strong style="color:var(--white);">He operates on a different level entirely and the women who encounter him feel it without knowing why.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ATTRACTION IS BIOLOGICAL ─── -->
+<section style="padding:100px 40px; position:relative; z-index:1; background:rgba(10,17,32,0.75);">
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);"></div>
+  <div style="max-width:1000px; margin:0 auto;">
+    <div class="section-eyebrow reveal" style="margin-bottom:20px;">
+      <div class="section-eyebrow-line"></div>
+      <div class="section-eyebrow-text">Why Attraction Works The Way It Does</div>
+    </div>
+    <div class="section-headline reveal">Attraction is not random.<br><em>It follows documented rules.</em></div>
+    <p class="reveal" style="font-family:'Source Serif 4',serif; font-size:clamp(16px,1.8vw,19px); color:var(--muted); line-height:1.75; max-width:700px; margin-bottom:64px;">Decades of peer-reviewed research in evolutionary psychology, neuroscience, and social behaviour have mapped exactly what creates desire and what kills it. Once you understand the mechanism, the confusion disappears permanently.</p>
+
+    <div class="mechanism-grid reveal">
+      <div class="mechanism-card glass">
+        <div style="font-family:'Playfair Display',serif; font-size:48px; font-weight:800; color:var(--gold); line-height:1; margin-bottom:16px; text-shadow:0 0 30px rgba(201,168,76,0.3);">94%</div>
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">of cultures studied</div>
+        <p style="font-family:'Source Serif 4',serif; font-size:15px; color:var(--muted); line-height:1.7; margin:0;">Across 37 countries and 10,000+ participants, researchers found the same qualities reliably drove attraction and none of them were looks or wealth. They were behavioural. <strong style="color:var(--white);">Every single one is learnable.</strong></p>
+      </div>
+      <div class="mechanism-card glass">
+        <div style="font-family:'Playfair Display',serif; font-size:48px; font-weight:800; color:var(--gold); line-height:1; margin-bottom:16px; text-shadow:0 0 30px rgba(201,168,76,0.3);">↓</div>
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">availability kills desire</div>
+        <p style="font-family:'Source Serif 4',serif; font-size:15px; color:var(--muted); line-height:1.7; margin:0;">Controlled studies confirm it: certainty and over-availability consistently reduce attraction. The qualities you were told to show — consistency, openness, reliability — are the exact ones that quietly destroy desire. <strong style="color:var(--white);">The fix is counterintuitive. It is in Module 4.</strong></p>
+      </div>
+      <div class="mechanism-card glass">
+        <div style="font-family:'Playfair Display',serif; font-size:48px; font-weight:800; color:var(--gold); line-height:1; margin-bottom:16px; text-shadow:0 0 30px rgba(201,168,76,0.3);">3</div>
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">neurochemical systems</div>
+        <p style="font-family:'Source Serif 4',serif; font-size:15px; color:var(--muted); line-height:1.7; margin:0;">Attraction, lust, and attachment are neurochemically distinct states each triggered by different behaviour. Most men accidentally activate the wrong one at the wrong time. <strong style="color:var(--white);">Module 3 shows you which behaviours drive which state.</strong></p>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:64px; padding:40px 48px; border-top:2px solid var(--gold); border-bottom:1px solid rgba(201,168,76,0.15);">
+      <p style="font-family:'Playfair Display',serif; font-size:clamp(18px,2.2vw,24px); font-style:italic; color:var(--gold2); line-height:1.65; margin:0 0 16px;">"The men who are effortlessly successful with women were not born that way. They operate with an understanding that most men never acquire. This programme gives you that understanding — structured, applied, and permanent."</p>
+      <div style="font-size:11px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--dimmed);">— Dark Seduction Masterclass</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TWO MEN SECTION ─── -->
+<section id="window" style="padding:120px 40px; position:relative; z-index:1; background:rgba(10,17,32,0.75);">
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);"></div>
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-eyebrow reveal" style="justify-content:center; margin-bottom:18px;">
+      <div class="section-eyebrow-line"></div>
+      <div class="section-eyebrow-text">Two Men. Same Room.</div>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <div class="section-headline reveal" style="text-align:center; margin-bottom:16px;">Same conversation.<br><em>Completely different outcomes.</em></div>
+    <p class="reveal" style="font-family:'Source Serif 4',serif; font-size:clamp(16px,1.8vw,19px); color:var(--muted); line-height:1.8; max-width:640px; margin:0 auto 64px; text-align:center;">Not looks.<br>Not money.<br>Not confidence as a feeling.<br><br>One of them understood how attraction actually works.<br>The other was operating on hope.<br><br>Hope kept making it worse.</p>
+
+    <div class="reveal two-men-split" style="margin-bottom:72px; align-items:stretch;">
+      <div style="background:rgba(10,14,26,0.95); padding:52px 44px; border:1px solid rgba(255,255,255,0.04); opacity:0.85;">
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.28em; text-transform:uppercase; color:rgba(192,57,43,0.7); margin-bottom:28px;">Without This Understanding</div>
+        <div style="display:flex; flex-direction:column; gap:22px;">
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="color:rgba(192,57,43,0.6); font-size:16px; flex-shrink:0; margin-top:2px;">✕</div>
+            <p style="font-family:'Source Serif 4',serif; font-size:16px; color:var(--muted); line-height:1.65; margin:0;">She seemed interested. Then she went quiet. He replays the conversation looking for the moment it turned and never finds it.</p>
+          </div>
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="color:rgba(192,57,43,0.6); font-size:16px; flex-shrink:0; margin-top:2px;">✕</div>
+            <p style="font-family:'Source Serif 4',serif; font-size:16px; color:var(--muted); line-height:1.65; margin:0;">He became more available. More transparent. More present. The attraction evaporated and he still doesn't know why effort made it worse.</p>
+          </div>
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="color:rgba(192,57,43,0.6); font-size:16px; flex-shrink:0; margin-top:2px;">✕</div>
+            <p style="font-family:'Source Serif 4',serif; font-size:16px; color:var(--muted); line-height:1.65; margin:0;">He watched men who seemed to do less get considerably more and filed it under luck, looks, or something he'd never have.</p>
+          </div>
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="color:rgba(192,57,43,0.6); font-size:16px; flex-shrink:0; margin-top:2px;">✕</div>
+            <p style="font-family:'Source Serif 4',serif; font-size:16px; color:var(--muted); line-height:1.65; margin:0;">He is kind, genuine, and consistent. He is also, to her, entirely predictable which means he is no longer interesting.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(180deg, transparent 0%, rgba(201,168,76,0.5) 20%, rgba(201,168,76,0.5) 80%, transparent 100%);"></div>
+
+      <div style="background:rgba(14,22,38,0.95); padding:52px 44px; border:1px solid rgba(201,168,76,0.18); box-shadow:inset 0 0 60px rgba(201,168,76,0.04);">
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); margin-bottom:28px;">With This Understanding</div>
+        <div style="display:flex; flex-direction:column; gap:22px;">
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="color:var(--gold); font-size:14px; flex-shrink:0; margin-top:3px;">◆</div>
+            <p style="font-family:'Source Serif 4',serif; font-size:16px; color:var(--muted); line-height:1.65; margin:0;">She reaches out first. He doesn't analyse why. He already knows exactly why, because he built it that way.</p>
+          </div>
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="color:var(--gold); font-size:14px; flex-shrink:0; margin-top:3px;">◆</div>
+            <p style="font-family:'Source Serif 4',serif; font-size:16px; color:var(--muted); line-height:1.65; margin:0;">He pulls back at the right moment. She notices the space. Her investment increases not despite the distance, but because of it.</p>
+          </div>
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="color:var(--gold); font-size:14px; flex-shrink:0; margin-top:3px;">◆</div>
+            <p style="font-family:'Source Serif 4',serif; font-size:16px; color:var(--muted); line-height:1.65; margin:0;">He is not chasing. He is not performing. He is simply a man she cannot locate the edge of and that incompleteness is what keeps her returning.</p>
+          </div>
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="color:var(--gold); font-size:14px; flex-shrink:0; margin-top:3px;">◆</div>
+            <p style="font-family:'Source Serif 4',serif; font-size:16px; color:var(--muted); line-height:1.65; margin:0;">Attraction is no longer something that happens to him. It is something he creates. Deliberately, consistently, and without apology.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ─── BRIDGE PIVOT + TAGLINE (merged) ─── -->
+<section style="padding:100px 40px 80px; position:relative; z-index:1; background:rgba(10,17,32,0.8);">
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);"></div>
+  <div style="max-width:820px; margin:0 auto; text-align:center;">
+    <p class="reveal" style="font-family:'Source Serif 4',serif; font-size:clamp(18px,2.2vw,24px); color:var(--muted); line-height:1.8; margin-bottom:20px;">One of them left that room with her number. The other left wondering what he did wrong. Neither of them knew why. The only difference was what one of them understood and the other did not.</p>
+    <p class="reveal" style="font-family:'Playfair Display',serif; font-size:clamp(22px,3vw,34px); font-weight:800; font-style:italic; color:var(--gold2); line-height:1.4; margin-bottom:52px; text-shadow:0 0 40px rgba(201,168,76,0.2);">Now you are going to learn what he knew.</p>
+    <div class="reveal" style="width:60px; height:2px; background:var(--gold); margin:0 auto 52px;"></div>
+    <div class="section-eyebrow reveal" style="justify-content:center; margin-bottom:24px;">
+      <div class="section-eyebrow-line"></div>
+      <div class="section-eyebrow-text">The Dark Seduction Masterclass</div>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <div class="reveal" style="font-family:'Playfair Display',serif; font-size:clamp(28px,4vw,54px); font-weight:800; color:var(--white); line-height:1.1; margin-bottom:10px;">Dating, finally made easy.</div>
+    <div class="reveal" style="font-family:'Playfair Display',serif; font-size:clamp(28px,4vw,54px); font-weight:800; font-style:italic; color:var(--gold); line-height:1.1; margin-bottom:52px; text-shadow:0 0 60px rgba(201,168,76,0.3);">For men. Like never before.</div>
+    <div style="width:60px; height:2px; background:var(--gold); margin:0 auto;"></div>
+  </div>
+</section>
+
+<!-- ─── PRODUCT INTRO ─── -->
+<section style="padding:100px 40px; position:relative; z-index:1; background:rgba(14,22,40,0.6);" id="product">
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);"></div>
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-eyebrow reveal" style="margin-bottom:20px;">
+      <div class="section-eyebrow-line"></div>
+      <div class="section-eyebrow-text">The Dark Seduction Masterclass</div>
+    </div>
+    <div class="section-headline reveal" style="margin-bottom:16px;">What this is.<br><em>And what it does.</em></div>
+
+    <!-- 2-col: copy left, dashboard mock right -->
+    <div class="reveal product-intro-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; margin-bottom:48px;">
+
+      <!-- LEFT: copy -->
+      <div>
+        <p style="font-family:'Source Serif 4',serif; font-size:clamp(16px,1.8vw,19px); color:var(--muted); line-height:1.78; margin:0 0 28px;">This is not a PDF. Not a course you buy and forget. It is a structured, interactive digital programme — 13 sequential chapters, each built around a single documented principle of how women think, what they respond to, and why they feel drawn to certain men for reasons they themselves cannot explain.</p>
+
+        <p style="font-family:'Source Serif 4',serif; font-size:clamp(16px,1.8vw,19px); color:var(--muted); line-height:1.78; margin:0 0 36px;">The female mind operates on patterns that are consistent, documented, and almost entirely invisible to the men on the receiving end of them. This programme maps those patterns — in full. Not the version that gets softened for mainstream consumption. The real version. The one that makes you uncomfortable the first time you read it, because you immediately recognise it in your own past.</p>
+
+      </div>
+
+      <!-- RIGHT: inline dashboard mini-mock -->
+      <div class="product-mock-col" style="position:relative;">
+
+        <!-- STATIC MOBILE CARD (hidden on desktop, shown on mobile via CSS) -->
+        <div class="mock-static-card" style="display:none; flex-direction:column; border:1px solid rgba(201,168,76,0.3); background:linear-gradient(160deg,#0F1A2E 0%,#0A1120 100%); border-radius:6px; overflow:hidden; box-shadow:0 16px 48px rgba(0,0,0,0.5), 0 0 32px rgba(201,168,76,0.08);">
+          <!-- card header -->
+          <div style="padding:20px 24px 16px; border-bottom:1px solid rgba(201,168,76,0.12); background:rgba(201,168,76,0.03);">
+            <div style="font-family:'Barlow',sans-serif; font-size:9px; font-weight:700; letter-spacing:0.24em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; opacity:0.7;">Dark Seduction Masterclass</div>
+            <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:800; color:var(--white); line-height:1.2;">13 Chapters. <em style="color:var(--gold); font-style:italic;">One System.</em></div>
+          </div>
+          <!-- chapter list preview -->
+          <div style="padding:16px 24px; display:flex; flex-direction:column; gap:0;">
+            <div style="display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid rgba(255,255,255,0.04);">
+              <span style="font-family:'Barlow',sans-serif; font-size:10px; font-weight:700; color:var(--gold); min-width:22px; opacity:0.6;">01</span>
+              <span style="font-size:13px; color:var(--muted); flex:1;">The Invisible Problem</span>
+              <span style="width:6px; height:6px; border-radius:50%; background:var(--gold); box-shadow:0 0 6px rgba(201,168,76,0.6); flex-shrink:0;"></span>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid rgba(255,255,255,0.04);">
+              <span style="font-family:'Barlow',sans-serif; font-size:10px; font-weight:700; color:var(--gold); min-width:22px; opacity:0.6;">02</span>
+              <span style="font-size:13px; color:var(--muted); flex:1;">The Silent Language</span>
+              <span style="width:6px; height:6px; border-radius:50%; background:var(--gold); box-shadow:0 0 6px rgba(201,168,76,0.6); flex-shrink:0;"></span>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid rgba(255,255,255,0.04); background:rgba(201,168,76,0.05); margin:0 -24px; padding-left:24px; padding-right:24px; position:relative;">
+              <div style="position:absolute; left:0; top:0; bottom:0; width:3px; background:linear-gradient(180deg,var(--gold2),var(--gold));"></div>
+              <span style="font-family:'Barlow',sans-serif; font-size:10px; font-weight:800; color:var(--gold); min-width:22px;">03</span>
+              <span style="font-size:13px; color:var(--white); font-weight:600; flex:1;">Laws She Can't Resist</span>
+              <span style="font-family:'Barlow',sans-serif; font-size:8px; font-weight:700; letter-spacing:0.1em; color:var(--gold); opacity:0.8;">ACTIVE</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid rgba(255,255,255,0.04); opacity:0.35;">
+              <span style="font-family:'Barlow',sans-serif; font-size:10px; font-weight:700; color:var(--dimmed); min-width:22px;">04</span>
+              <span style="font-size:13px; color:var(--dimmed); flex:1;">Built to Seduce</span>
+              <span style="font-size:11px; color:var(--dimmed);">🔒</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px; padding:11px 0; opacity:0.25;">
+              <span style="font-family:'Barlow',sans-serif; font-size:10px; font-weight:700; color:var(--dimmed); min-width:22px;">05</span>
+              <span style="font-size:13px; color:var(--dimmed); flex:1;">+ 8 more chapters</span>
+              <span style="font-size:11px; color:var(--dimmed);">🔒</span>
+            </div>
+          </div>
+          <!-- progress footer -->
+          <div style="padding:14px 24px; background:rgba(0,0,0,0.2); border-top:1px solid rgba(201,168,76,0.1);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="font-family:'Barlow',sans-serif; font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--dimmed);">Progress</span>
+              <span style="font-family:'Barlow',sans-serif; font-size:11px; font-weight:800; color:var(--gold);">23%</span>
+            </div>
+            <div style="height:3px; background:rgba(255,255,255,0.07); border-radius:2px; overflow:hidden;">
+              <div style="height:100%; width:23%; background:linear-gradient(90deg,var(--gold),var(--gold2)); border-radius:2px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- browser chrome bar (desktop only) -->
+        <div style="background:#0a0f1e; border:1px solid rgba(201,168,76,0.25); border-bottom:none; border-radius:8px 8px 0 0; padding:9px 14px; display:flex; align-items:center; gap:8px;">
+          <span style="width:9px;height:9px;border-radius:50%;background:#3a3a4a;display:inline-block;"></span>
+          <span style="width:9px;height:9px;border-radius:50%;background:#3a3a4a;display:inline-block;"></span>
+          <span style="width:9px;height:9px;border-radius:50%;background:#3a3a4a;display:inline-block;"></span>
+          <div style="flex:1;height:18px;background:rgba(255,255,255,0.04);border-radius:3px;margin-left:6px;display:flex;align-items:center;padding:0 10px;">
+            <span style="font-family:'Barlow',sans-serif;font-size:9px;color:rgba(255,255,255,0.2);letter-spacing:0.08em;">persuasionacademy.com/dashboard</span>
+          </div>
+        </div>
+
+        <!-- mock window -->
+        <div style="border:1px solid rgba(201,168,76,0.25); border-top:none; border-radius:0 0 8px 8px; overflow:hidden; box-shadow:0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(201,168,76,0.07);">
+          <div style="display:flex; height:320px; background:#050710; font-family:'DM Sans',sans-serif; overflow:hidden;">
+
+            <!-- sidebar strip -->
+            <div style="width:140px; background:#090d1c; border-right:1px solid #182540; display:flex; flex-direction:column; flex-shrink:0; position:relative; overflow:hidden;">
+              <!-- gold top line -->
+              <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#7a5a1e,#e8b84c,#7a5a1e,transparent);z-index:2;"></div>
+              <!-- brand -->
+              <div style="padding:14px 12px 10px; border-bottom:1px solid #182540;">
+                <div style="font-family:'Barlow',sans-serif;font-size:7px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#506080;margin-bottom:4px;">Persuasion Academy</div>
+                <div style="font-family:'Playfair Display',serif;font-size:12px;font-weight:700;color:#dde6f5;line-height:1.3;">Dark <em style="color:#e8b84c;font-style:italic;">Seduction</em></div>
+              </div>
+              <!-- nav items -->
+              <div style="flex:1;padding:8px 0;overflow:hidden;">
+                <div style="font-family:'Barlow',sans-serif;font-size:7px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#506080;padding:4px 12px 2px;">Phase I</div>
+                <!-- visited -->
+                <div style="display:flex;align-items:center;gap:6px;padding:6px 12px;opacity:0.7;">
+                  <span style="font-family:'Barlow',sans-serif;font-size:7.5px;font-weight:700;color:#7a5a1e;min-width:14px;">01</span>
+                  <span style="font-size:10px;color:#8a9cba;flex:1;line-height:1.2;">The Invisible Problem</span>
+                  <span style="width:5px;height:5px;border-radius:50%;background:#c9953a;flex-shrink:0;"></span>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;padding:6px 12px;opacity:0.7;">
+                  <span style="font-family:'Barlow',sans-serif;font-size:7.5px;font-weight:700;color:#7a5a1e;min-width:14px;">02</span>
+                  <span style="font-size:10px;color:#8a9cba;flex:1;line-height:1.2;">The Silent Language</span>
+                  <span style="width:5px;height:5px;border-radius:50%;background:#c9953a;flex-shrink:0;"></span>
+                </div>
+                <!-- active -->
+                <div style="display:flex;align-items:center;gap:6px;padding:6px 12px;background:rgba(201,149,58,0.1);position:relative;">
+                  <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#f5d070,#c9953a);"></div>
+                  <span style="font-family:'Barlow',sans-serif;font-size:7.5px;font-weight:700;color:#e8b84c;min-width:14px;">03</span>
+                  <span style="font-size:10px;color:#dde6f5;font-weight:500;flex:1;line-height:1.2;">Laws She Can't Resist</span>
+                  <span style="width:5px;height:5px;border-radius:50%;background:#e8b84c;box-shadow:0 0 6px rgba(232,184,76,0.6);flex-shrink:0;"></span>
+                </div>
+                <!-- locked -->
+                <div style="font-family:'Barlow',sans-serif;font-size:7px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#506080;padding:8px 12px 2px;">Phase II</div>
+                <div style="display:flex;align-items:center;gap:6px;padding:6px 12px;opacity:0.35;">
+                  <span style="font-family:'Barlow',sans-serif;font-size:7.5px;font-weight:700;color:#506080;min-width:14px;">04</span>
+                  <span style="font-size:10px;color:#506080;flex:1;line-height:1.2;">Built to Seduce</span>
+                  <span style="font-size:9px;color:#506080;">🔒</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;padding:6px 12px;opacity:0.35;">
+                  <span style="font-family:'Barlow',sans-serif;font-size:7.5px;font-weight:700;color:#506080;min-width:14px;">05</span>
+                  <span style="font-size:10px;color:#506080;flex:1;line-height:1.2;">Fourteen Laws</span>
+                  <span style="font-size:9px;color:#506080;">🔒</span>
+                </div>
+              </div>
+              <!-- progress bar -->
+              <div style="padding:10px 12px;border-top:1px solid #182540;">
+                <div style="font-family:'Barlow',sans-serif;font-size:7px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#506080;margin-bottom:5px;">Progress</div>
+                <div style="height:3px;background:#182540;border-radius:2px;overflow:hidden;">
+                  <div style="height:100%;width:23%;background:linear-gradient(90deg,#c9953a,#e8b84c);border-radius:2px;"></div>
+                </div>
+                <div style="font-family:'Barlow',sans-serif;font-size:9px;font-weight:700;color:#e8b84c;text-align:right;margin-top:3px;">23%</div>
+              </div>
+            </div>
+
+            <!-- main content -->
+            <div style="flex:1;overflow:hidden;display:flex;flex-direction:column;">
+              <!-- chapter hero -->
+              <div style="background:linear-gradient(140deg,#0b1829 0%,#070f1e 60%,#050710 100%);border-bottom:1px solid #182540;padding:20px 24px 16px;position:relative;overflow:hidden;flex-shrink:0;">
+                <!-- grid texture -->
+                <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(26,46,74,0.2) 1px,transparent 1px),linear-gradient(90deg,rgba(26,46,74,0.2) 1px,transparent 1px);background-size:36px 36px;opacity:0.4;pointer-events:none;"></div>
+                <!-- orb -->
+                <div style="position:absolute;top:-40px;right:-30px;width:160px;height:160px;background:radial-gradient(circle,rgba(201,149,58,0.1) 0%,transparent 70%);border-radius:50%;pointer-events:none;"></div>
+                <!-- watermark -->
+                <div style="position:absolute;right:-2%;bottom:-10%;font-family:'Playfair Display',serif;font-size:64px;font-weight:800;font-style:italic;color:rgba(232,184,76,0.025);line-height:1;pointer-events:none;user-select:none;white-space:nowrap;">Laws</div>
+                <div style="font-family:'Barlow',sans-serif;font-size:8px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:#5a7090;margin-bottom:6px;display:flex;align-items:center;gap:7px;position:relative;z-index:1;">
+                  <span style="display:inline-block;width:18px;height:1px;background:#7a5a1e;"></span>
+                  Chapter Three
+                  <span style="display:inline-flex;align-items:center;font-size:7px;letter-spacing:0.14em;color:#7a5a1e;border:1px solid rgba(201,149,58,0.2);padding:1px 6px;border-radius:12px;background:rgba(201,149,58,0.05);">3 of 13</span>
+                </div>
+                <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:800;color:#dde6f5;line-height:1.1;margin-bottom:6px;position:relative;z-index:1;">The Laws She <em style="font-style:italic;color:#e8b84c;">Can't Resist</em></div>
+                <div style="font-size:10px;color:#8a9cba;line-height:1.5;max-width:340px;position:relative;z-index:1;">Attraction is not something you force. It is something you create the conditions for.</div>
+                <div style="margin-top:8px;font-size:8px;color:#506080;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;position:relative;z-index:1;">◷ ~15 min read</div>
+              </div>
+              <!-- tabs -->
+              <div style="display:flex;border-bottom:1px solid #182540;background:#090d1c;padding:0 16px;overflow:hidden;flex-shrink:0;">
+                <div style="padding:8px 10px;font-family:'Barlow',sans-serif;font-size:8.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#e8b84c;border-bottom:2px solid #e8b84c;white-space:nowrap;">Foundation</div>
+                <div style="padding:8px 10px;font-family:'Barlow',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#506080;white-space:nowrap;">Natural Laws</div>
+                <div style="padding:8px 10px;font-family:'Barlow',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#506080;white-space:nowrap;">The Selector</div>
+                <div style="padding:8px 10px;font-family:'Barlow',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#506080;white-space:nowrap;">Summary</div>
+              </div>
+              <!-- body preview -->
+              <div style="flex:1;padding:16px 20px;overflow:hidden;">
+                <!-- opening quote -->
+                <div style="border-left:2px solid #7a5a1e;padding:10px 14px;background:rgba(201,149,58,0.03);border-radius:0 6px 6px 0;margin-bottom:14px;">
+                  <div style="font-family:'Playfair Display',serif;font-size:11px;font-style:italic;color:#dde6f5;line-height:1.5;margin-bottom:4px;">"You do not attract what you want. You attract what you are."</div>
+                  <div style="font-family:'Barlow',sans-serif;font-size:7.5px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#7a5a1e;">— Persuasion Academy by RA</div>
+                </div>
+                <!-- body text lines (decorative skeletons) -->
+                <div style="font-family:'Barlow',sans-serif;font-size:8px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#c9953a;margin-bottom:5px;">The Foundation</div>
+                <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#dde6f5;margin-bottom:6px;">How Attraction Actually Works</div>
+                <div style="height:7px;background:rgba(138,156,186,0.15);border-radius:2px;margin-bottom:5px;width:95%;"></div>
+                <div style="height:7px;background:rgba(138,156,186,0.12);border-radius:2px;margin-bottom:5px;width:88%;"></div>
+                <div style="height:7px;background:rgba(138,156,186,0.1);border-radius:2px;width:76%;"></div>
+              </div>
+            </div>
+
+          </div><!-- /flex row -->
+        </div><!-- /mock window -->
+
+        <!-- subtle glow beneath -->
+        <div style="position:absolute;bottom:-20px;left:10%;right:10%;height:40px;background:radial-gradient(ellipse,rgba(201,168,76,0.18),transparent 70%);filter:blur(12px);pointer-events:none;border-radius:50%;"></div>
+      </div><!-- /right col -->
+
+    </div><!-- /2-col grid -->
+
+    <!-- FEATURE PILLS — full width 2x2 -->
+    <div class="reveal feature-pills-grid" style="display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:rgba(201,168,76,0.07); margin-bottom:32px;">
+
+      <div style="display:flex; align-items:flex-start; gap:16px; padding:24px 24px; background:rgba(10,14,26,0.85); border-left:3px solid var(--gold);">
+        <div style="flex-shrink:0; width:28px; height:28px; border:1px solid rgba(201,168,76,0.4); display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span style="color:var(--gold); font-size:13px; font-weight:800;">▲</span>
+        </div>
+        <div>
+          <div style="font-family:'Barlow',sans-serif; font-size:11px; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;">Forbidden Attraction Principles</div>
+          <div style="font-family:'Source Serif 4',serif; font-size:14px; color:var(--muted); line-height:1.65;">The psychological mechanisms that create desire in women — documented by researchers, ignored by society, and never discussed plainly in public. Until now.</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:flex-start; gap:16px; padding:24px 24px; background:rgba(10,14,26,0.85); border-left:3px solid var(--gold);">
+        <div style="flex-shrink:0; width:28px; height:28px; border:1px solid rgba(201,168,76,0.4); display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span style="color:var(--gold); font-size:13px; font-weight:800;">▲</span>
+        </div>
+        <div>
+          <div style="font-family:'Barlow',sans-serif; font-size:11px; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;">How Her Mind Actually Works</div>
+          <div style="font-family:'Source Serif 4',serif; font-size:14px; color:var(--muted); line-height:1.65;">What she tells herself she wants versus what she actually responds to are two different things. Chapter 3 maps the gap — precisely, uncomfortably, and without apology.</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:flex-start; gap:16px; padding:24px 24px; background:rgba(10,14,26,0.85); border-left:3px solid var(--gold);">
+        <div style="flex-shrink:0; width:28px; height:28px; border:1px solid rgba(201,168,76,0.4); display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span style="color:var(--gold); font-size:13px; font-weight:800;">▲</span>
+        </div>
+        <div>
+          <div style="font-family:'Barlow',sans-serif; font-size:11px; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;">Dark. Uncomfortable. Effective.</div>
+          <div style="font-family:'Source Serif 4',serif; font-size:14px; color:var(--muted); line-height:1.65;">Some of what this programme teaches is not comfortable knowledge. It works precisely because it operates below the level of conscious awareness — hers and everyone else's around you.</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:flex-start; gap:16px; padding:24px 24px; background:rgba(10,14,26,0.85); border-left:3px solid rgba(192,57,43,0.8);">
+        <div style="flex-shrink:0; width:28px; height:28px; border:1px solid rgba(192,57,43,0.5); display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span style="color:rgba(192,57,43,0.9); font-size:13px; font-weight:800;">!</span>
+        </div>
+        <div>
+          <div style="font-family:'Barlow',sans-serif; font-size:11px; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; color:rgba(220,100,80,0.9); margin-bottom:6px;">Not For Everyone</div>
+          <div style="font-family:'Source Serif 4',serif; font-size:14px; color:var(--muted); line-height:1.65;">This programme was not designed to be widely shared. The principles inside it are the kind that, once understood, cannot be unseen. If you are looking for comfortable advice, this is not it.</div>
+        </div>
+      </div>
+
+    </div><!-- /feature pills -->
+
+    <!-- WHAT YOU GET GRID — 4 col -->
+    <div class="reveal what-you-get-grid" style="display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:rgba(201,168,76,0.07); margin-bottom:56px;">
+      <div style="background:var(--navy2); padding:36px 28px; text-align:center;">
+        <div style="font-family:'Playfair Display',serif; font-size:44px; font-weight:800; color:var(--gold); line-height:1; margin-bottom:10px; text-shadow:0 0 30px rgba(201,168,76,0.35);">13</div>
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--dimmed); margin-bottom:8px;">Chapters</div>
+        <p style="font-family:'Source Serif 4',serif; font-size:13px; color:var(--muted); line-height:1.6; margin:0;">Four phases. Sequential unlock. Each one builds on the last — nothing skipped, nothing wasted.</p>
+      </div>
+      <div style="background:var(--navy2); padding:36px 28px; text-align:center;">
+        <div style="font-family:'Playfair Display',serif; font-size:44px; font-weight:800; color:var(--gold); line-height:1; margin-bottom:10px; text-shadow:0 0 30px rgba(201,168,76,0.35);">90</div>
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--dimmed); margin-bottom:8px;">Day Programme</div>
+        <p style="font-family:'Source Serif 4',serif; font-size:13px; color:var(--muted); line-height:1.6; margin:0;">A complete system engineered to produce visible, permanent change in 90 days of real application.</p>
+      </div>
+      <div style="background:var(--navy2); padding:36px 28px; text-align:center;">
+        <div style="font-family:'Playfair Display',serif; font-size:44px; font-weight:800; color:var(--gold); line-height:1; margin-bottom:10px; text-shadow:0 0 30px rgba(201,168,76,0.35);">50+</div>
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--dimmed); margin-bottom:8px;">Research Sources</div>
+        <p style="font-family:'Source Serif 4',serif; font-size:13px; color:var(--muted); line-height:1.6; margin:0;">Every principle maps to peer-reviewed science. Not one man's opinion — five decades of documented psychology.</p>
+      </div>
+      <div style="background:var(--navy2); padding:36px 28px; text-align:center;">
+        <div style="font-family:'Playfair Display',serif; font-size:28px; font-weight:800; color:var(--gold); line-height:1; margin-bottom:10px; letter-spacing:0.01em;">∞</div>
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--dimmed); margin-bottom:8px;">Lifetime Access</div>
+        <p style="font-family:'Source Serif 4',serif; font-size:13px; color:var(--muted); line-height:1.6; margin:0;">Any device, any time. One payment, permanent access.</p>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS: 3 STEPS -->
+    <div class="section-eyebrow reveal" style="margin-bottom:24px;">
+      <div class="section-eyebrow-line"></div>
+      <div class="section-eyebrow-text">How It Works</div>
+    </div>
+    <div class="reveal how-it-works-grid" style="gap:2px; background:rgba(201,168,76,0.06); margin-bottom:0;">
+      <div style="background:var(--navy2); padding:40px 36px; border:1px solid rgba(201,168,76,0.1);">
+        <div style="font-family:'Playfair Display',serif; font-size:52px; font-weight:800; color:rgba(201,168,76,0.12); line-height:1; margin-bottom:20px;">01</div>
+        <div style="font-family:'Barlow',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">The Science</div>
+        <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--white); line-height:1.3; margin-bottom:14px;">Understand<br>the mechanism.</div>
+        <p style="font-family:'Source Serif 4',serif; font-size:15px; color:var(--muted); line-height:1.7; margin:0;">Each chapter opens with the documented research behind the principle. You understand why it works before you do a single thing — so the behaviour never feels forced and you are never just following instructions.</p>
+      </div>
+      <div style="background:var(--navy2); padding:40px 36px; border:1px solid rgba(201,168,76,0.1); position:relative; overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold));"></div>
+        <div style="font-family:'Playfair Display',serif; font-size:52px; font-weight:800; color:rgba(201,168,76,0.12); line-height:1; margin-bottom:20px;">02</div>
+        <div style="font-family:'Barlow',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">The Framework</div>
+        <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--white); line-height:1.3; margin-bottom:14px;">Apply it<br>precisely.</div>
+        <p style="font-family:'Source Serif 4',serif; font-size:15px; color:var(--muted); line-height:1.7; margin:0;">The research becomes exact, specific behaviour. Not vague advice. Precise frameworks for how to carry yourself, what to say, what to withhold, and when. Applicable from the same day you read it.</p>
+      </div>
+      <div style="background:var(--navy2); padding:40px 36px; border:1px solid rgba(201,168,76,0.1);">
+        <div style="font-family:'Playfair Display',serif; font-size:52px; font-weight:800; color:rgba(201,168,76,0.18); line-height:1; margin-bottom:20px;">03</div>
+        <div style="font-family:'Barlow',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">The Exercises</div>
+        <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--white); line-height:1.3; margin-bottom:14px;">Real drills.<br><em style="color:var(--gold); font-style:italic;">Real world.</em></div>
+        <p style="font-family:'Source Serif 4',serif; font-size:15px; color:var(--muted); line-height:1.7; margin:0;">Structured exercises at the end of each chapter take the principle into your actual life. Specific actions to complete before the next chapter unlocks — so understanding becomes behaviour, not just memory.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </div>
+</section>
+
+<!-- ─── LEAN CREDIBILITY STRIP ─── -->
+<section class="research-credibility" id="research" style="padding:72px 40px; position:relative; z-index:1; background:rgba(10,17,32,0.7);">
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);"></div>
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-eyebrow reveal" style="justify-content:center;margin-bottom:16px;">
+      <div class="section-eyebrow-line"></div>
+      <div class="section-eyebrow-text">The Science Behind Every Chapter</div>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <div class="section-headline reveal" style="text-align:center; margin-bottom:40px;">Not one man's opinion.<br><em>50 years of documented research.</em></div>
+
+    <div class="reveal research-stats-grid" style="margin-bottom:40px;">
+      <div style="background:var(--navy2);padding:36px 24px;text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:800;color:var(--gold);line-height:1;text-shadow:0 0 30px rgba(201,168,76,0.35);">37</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--dimmed);margin:10px 0 8px;">Cultures Studied</div>
+        <div style="font-family:'Source Serif 4',serif;font-size:13px;color:var(--muted);line-height:1.6;">Researchers tested what women find attractive across 37 countries. Every culture. Every religion. The same qualities kept appearing. Behavioural science consistently suggests this reflects something deeper than local conditioning alone.</div>
+        <div style="font-size:10px;color:rgba(201,168,76,0.4);font-style:italic;margin-top:10px;">Buss, 1989</div>
+      </div>
+      <div style="background:var(--navy2);padding:36px 24px;text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:800;color:var(--gold);line-height:1;text-shadow:0 0 30px rgba(201,168,76,0.35);">10K+</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--dimmed);margin:10px 0 8px;">Real People Studied</div>
+        <div style="font-family:'Source Serif 4',serif;font-size:13px;color:var(--muted);line-height:1.6;">Over 10,000 participants confirmed that looks and money ranked far below specific behavioural and psychological traits. Those traits are learnable. They are built into the Masterclass.</div>
+        <div style="font-size:10px;color:rgba(201,168,76,0.4);font-style:italic;margin-top:10px;">Feingold, 1992</div>
+      </div>
+      <div style="background:var(--navy2);padding:36px 24px;text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:800;color:var(--gold);line-height:1;text-shadow:0 0 30px rgba(201,168,76,0.35);">50+</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--dimmed);margin:10px 0 8px;">Years of Research</div>
+        <div style="font-family:'Source Serif 4',serif;font-size:13px;color:var(--muted);line-height:1.6;">It took researchers five decades to build a complete picture of human attraction. We read it all, stripped out the theory, and left only what a man can actually apply. That is the Masterclass you get access to tonight.</div>
+        <div style="font-size:10px;color:rgba(201,168,76,0.4);font-style:italic;margin-top:10px;">Bowlby to Buss</div>
+      </div>
+      <div style="background:var(--navy2);padding:36px 24px;text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:800;color:var(--gold);line-height:1;text-shadow:0 0 30px rgba(201,168,76,0.35);">94%</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--dimmed);margin:10px 0 8px;">Cross-Cultural Agreement</div>
+        <div style="font-family:'Source Serif 4',serif;font-size:13px;color:var(--muted);line-height:1.6;">Across 94% of the cultures studied, the same qualities consistently ranked above physical appearance in partner evaluation. Those qualities have nothing to do with your face or your bank account. They are built into Module 3.</div>
+        <div style="font-size:10px;color:rgba(201,168,76,0.4);font-style:italic;margin-top:10px;">Universal preference</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── FEATURES AND BENEFITS ─── -->
+<section style="background:rgba(10,17,32,0.7); position:relative; z-index:1; padding:100px 40px;">
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);"></div>
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-eyebrow reveal" style="margin-bottom:20px;">
+      <div class="section-eyebrow-line"></div>
+      <div class="section-eyebrow-text">What Changes. And When.</div>
+    </div>
+    <div class="section-headline reveal" style="margin-bottom:16px;">Six things that happen<br><em>to a man who goes through this.</em></div>
+    <p class="reveal" style="font-family:'Source Serif 4',serif; font-size:clamp(16px,1.8vw,19px); color:var(--muted); line-height:1.78; max-width:680px; margin-bottom:64px;">These are not promises. They are the documented outcomes of understanding what actually drives attraction — built into every chapter of the system.</p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px; background:rgba(201,168,76,0.07);" class="reveal benefits-grid-2col">
+
+      <div style="background:var(--navy2); padding:44px 40px; border:1px solid rgba(201,168,76,0.1); transition:background 0.3s;" onmouseover="this.style.background='rgba(15,26,48,0.98)'" onmouseout="this.style.background='var(--navy2)'">
+        <div style="font-family:'Playfair Display',serif; font-size:48px; font-weight:800; color:rgba(201,168,76,0.1); line-height:1; margin-bottom:16px; letter-spacing:-0.02em;">01</div>
+        <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:800; color:var(--white); line-height:1.25; margin-bottom:12px;">You finally understand<br><em style="color:var(--gold);">why it kept happening.</em></div>
+        <p style="font-family:'Source Serif 4',serif; font-size:16px; color:var(--muted); line-height:1.72; margin:0;">The friendzone. The silence after a real connection. The woman who chose someone worse. Every one of these has a precise psychological mechanism. Chapter One names it. The rest of the programme ensures it never catches you off guard again.</p>
+      </div>
+
+      <div style="background:var(--navy2); padding:44px 40px; border:1px solid rgba(201,168,76,0.1); transition:background 0.3s;" onmouseover="this.style.background='rgba(15,26,48,0.98)'" onmouseout="this.style.background='var(--navy2)'">
+        <div style="font-family:'Playfair Display',serif; font-size:48px; font-weight:800; color:rgba(201,168,76,0.1); line-height:1; margin-bottom:16px; letter-spacing:-0.02em;">02</div>
+        <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:800; color:var(--white); line-height:1.25; margin-bottom:12px;">You stop the behaviours<br><em style="color:var(--gold);">quietly destroying attraction.</em></div>
+        <p style="font-family:'Source Serif 4',serif; font-size:16px; color:var(--muted); line-height:1.72; margin:0;">Over-texting. Over-explaining. Being available before she has invested anything. These are not character flaws — they are behavioural patterns with documented effects on attraction. Chapters 4 and 5 map them precisely so you can stop them permanently.</p>
+      </div>
+
+      <div style="background:var(--navy2); padding:44px 40px; border:1px solid rgba(201,168,76,0.1); transition:background 0.3s; position:relative; overflow:hidden;" onmouseover="this.style.background='rgba(15,26,48,0.98)'" onmouseout="this.style.background='var(--navy2)'">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.4),transparent);"></div>
+        <div style="font-family:'Playfair Display',serif; font-size:48px; font-weight:800; color:rgba(201,168,76,0.1); line-height:1; margin-bottom:16px; letter-spacing:-0.02em;">03</div>
+        <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:800; color:var(--white); line-height:1.25; margin-bottom:12px;">Your presence changes<br><em style="color:var(--gold);">before you say a word.</em></div>
+        <p style="font-family:'Source Serif 4',serif; font-size:16px; color:var(--muted); line-height:1.72; margin:0;">Before you speak, you have already communicated your value. Chapters 2 and 4 cover eye contact, posture, movement, vocal delivery — the physical variables that dominant men deploy without conscious thought. They are learnable. Chapter 2 is where you begin.</p>
+      </div>
+
+      <div style="background:var(--navy2); padding:44px 40px; border:1px solid rgba(201,168,76,0.1); transition:background 0.3s; position:relative; overflow:hidden;" onmouseover="this.style.background='rgba(15,26,48,0.98)'" onmouseout="this.style.background='var(--navy2)'">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.4),transparent);"></div>
+        <div style="font-family:'Playfair Display',serif; font-size:48px; font-weight:800; color:rgba(201,168,76,0.1); line-height:1; margin-bottom:16px; letter-spacing:-0.02em;">04</div>
+        <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:800; color:var(--white); line-height:1.25; margin-bottom:12px;">You read her signals.<br><em style="color:var(--gold);">You never guess again.</em></div>
+        <p style="font-family:'Source Serif 4',serif; font-size:16px; color:var(--muted); line-height:1.72; margin:0;">Chapter 7 decodes the full vocabulary of female attraction signals — body language, behavioural patterns, the real-time cues most men miss entirely. You stop guessing. You read clearly, move with confidence, and never mistake polite tolerance for interest again.</p>
+      </div>
+
+      <div style="background:var(--navy2); padding:44px 40px; border:1px solid rgba(201,168,76,0.1); transition:background 0.3s;" onmouseover="this.style.background='rgba(15,26,48,0.98)'" onmouseout="this.style.background='var(--navy2)'">
+        <div style="font-family:'Playfair Display',serif; font-size:48px; font-weight:800; color:rgba(201,168,76,0.1); line-height:1; margin-bottom:16px; letter-spacing:-0.02em;">05</div>
+        <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:800; color:var(--white); line-height:1.25; margin-bottom:12px;">Conversations pull her in.<br><em style="color:var(--gold);">She keeps coming back.</em></div>
+        <p style="font-family:'Source Serif 4',serif; font-size:16px; color:var(--muted); line-height:1.72; margin:0;">Women fall in love with their ears. Chapter 6 builds the three pillars of compelling conversation — storytelling, emotional resonance, and the precise art of making her feel deeply understood without ever oversharing yourself. The man who learns this holds attention no looks can replicate.</p>
+      </div>
+
+      <div style="background:var(--navy2); padding:44px 40px; border:1px solid rgba(201,168,76,0.1); transition:background 0.3s;" onmouseover="this.style.background='rgba(15,26,48,0.98)'" onmouseout="this.style.background='var(--navy2)'">
+        <div style="font-family:'Playfair Display',serif; font-size:48px; font-weight:800; color:rgba(201,168,76,0.1); line-height:1; margin-bottom:16px; letter-spacing:-0.02em;">06</div>
+        <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:800; color:var(--white); line-height:1.25; margin-bottom:12px;">She becomes attached<br><em style="color:var(--gold);">in ways she cannot explain.</em></div>
+        <p style="font-family:'Source Serif 4',serif; font-size:16px; color:var(--muted); line-height:1.72; margin:0;">Chapter 13 goes somewhere most men never reach. The architecture of deep emotional attachment — why certain men become genuinely impossible to leave. Not through control. Through something far more powerful that she cannot locate or name. This is the final chapter for a reason.</p>
+      </div>
+
+    </div>
+
+    <!-- Proof quote -->
+    <div class="reveal glass" style="margin-top:2px; padding:36px 48px; border-left:3px solid var(--gold);">
+      <p style="font-family:'Source Serif 4',serif; font-size:17px; color:var(--muted); line-height:1.8; margin:0;"><strong style="color:var(--white);">Every one of these outcomes maps to a documented principle.</strong> Chapter 3 is built on Cialdini's research into scarcity and desire. Chapter 4 draws from evolutionary biology on mate investment. Chapter 6 uses Gottman's findings on emotional attunement. Chapter 13 uses attachment theory from Bowlby to Hazan. This is not one man's theory. It is 50 years of peer-reviewed science translated into behaviour you can apply tonight.</p>
+    </div>
+
+    <div class="reveal" style="text-align:center; margin-top:32px;">
+      <a href="research.html" style="display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);padding-bottom:3px;transition:color 0.25s,border-color 0.25s;" onmouseover="this.style.color='var(--gold2)';this.style.borderColor='var(--gold)'" onmouseout="this.style.color='var(--gold)';this.style.borderColor='rgba(201,168,76,0.3)'">
+        Read the full research library — 50+ peer-reviewed sources &nbsp;→
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<section class="what-you-get" id="chapters">
+  <div class="what-inner">
+    <div class="section-eyebrow reveal">
+      <div class="section-eyebrow-line"></div>
+      <div class="section-eyebrow-text">The Complete System</div>
+    </div>
+    <div class="section-headline reveal">All 13 modules.<br><em>Nothing held back.</em></div>
+    <p class="section-sub reveal">A structured, interactive system — built module by module, unlocked as you progress. Each module is a lesson, a framework, and a set of actions. You do not read this. You go through it.</p>
+
+    <!-- Phase I label -->
+    <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;" class="reveal">
+      <div style="height:1px; flex:1; background:rgba(201,168,76,0.12);"></div>
+      <div style="font-size:10px; font-weight:700; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); opacity:0.7; white-space:nowrap;">Phase I — Foundation: How you are seen before you speak</div>
+      <div style="height:1px; flex:1; background:rgba(201,168,76,0.12);"></div>
+    </div>
+
+    <div class="chapters-grid">
+
+      <div class="chapter-card glass reveal reveal-delay-1">
+        <div class="chapter-num">Chapter One</div>
+        <div class="chapter-title">What They Never Teach <em>You</em></div>
+        <div class="chapter-hook">Before a single word is spoken, the game has already begun. Those who understand this hold all the power.</div>
+        <div class="chapter-toggle"><span>↗ Preview Chapter</span><div class="chapter-toggle-icon">+</div></div>
+        <div class="chapter-preview">
+          <div class="chapter-preview-inner">
+            <div class="preview-label">What you'll master</div>
+            <ul class="preview-bullets">
+              <li>Why social proof and presence communicate value before you open your mouth</li>
+              <li>The foundations of physical self-presentation that everything else builds upon</li>
+              <li>How a man's internal frame becomes visible to every room he enters</li>
+            </ul>
+            <div class="preview-excerpt">"Most men walk into a room hoping to be accepted. The man who understands this chapter walks in already certain of his own value — and that certainty is felt before a single word is exchanged."</div>
+            <a href="https://topmate.io/persuasion_academy_by_ra/2032749" class="preview-cta" target="_blank" rel="noopener">Start the Masterclass →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-card glass reveal reveal-delay-2">
+        <div class="chapter-num">Chapter Two</div>
+        <div class="chapter-title">The Silent <em>Language</em> of Dominance</div>
+        <div class="chapter-hook">You say more without speaking than you ever could with words. The question is whether you are saying the right things.</div>
+        <div class="chapter-toggle"><span>↗ Preview Chapter</span><div class="chapter-toggle-icon">+</div></div>
+        <div class="chapter-preview">
+          <div class="chapter-preview-inner">
+            <div class="preview-label">What you'll master</div>
+            <ul class="preview-bullets">
+              <li>Eye contact, posture, and movement — the three non-verbal pillars of dominance</li>
+              <li>Why slow, deliberate movement signals high value in every social context</li>
+              <li>The exact body language mistakes that silently broadcast low status</li>
+            </ul>
+            <div class="preview-excerpt">"The man who fidgets, looks away first, and fills every silence with nervous words is communicating his own low value more loudly than any words could. Stillness is power."</div>
+            <a href="https://topmate.io/persuasion_academy_by_ra/2032749" class="preview-cta" target="_blank" rel="noopener">Start the Masterclass →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-card glass reveal reveal-delay-3">
+        <div class="chapter-num">Chapter Three</div>
+        <div class="chapter-title">The Laws She Can't <em>Resist</em></div>
+        <div class="chapter-hook">Attraction is not something you force. It is something you create the conditions for, and then allow to happen.</div>
+        <div class="chapter-toggle"><span>↗ Preview Chapter</span><div class="chapter-toggle-icon">+</div></div>
+        <div class="chapter-preview">
+          <div class="chapter-preview-inner">
+            <div class="preview-label">What you'll master</div>
+            <ul class="preview-bullets">
+              <li>The neurochemical basis of desire — what actually happens in her brain when she's attracted</li>
+              <li>Why certainty kills attraction and unresolved tension keeps it alive</li>
+              <li>The Salesman Principle — creating demand so you never need to chase again</li>
+            </ul>
+            <div class="preview-excerpt">"Attraction is not a feeling she decides to have. It is a biological response to specific signals. Once you understand which signals create it, you stop hoping and start engineering."</div>
+            <a href="https://topmate.io/persuasion_academy_by_ra/2032749" class="preview-cta" target="_blank" rel="noopener">Start the Masterclass →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase II label -->
+      <div style="grid-column:1/-1; display:flex; align-items:center; gap:16px; margin:28px 0 20px;" class="reveal">
+        <div style="height:1px; flex:1; background:rgba(201,168,76,0.12);"></div>
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); opacity:0.7; white-space:nowrap;">Phase II — Attraction: The mechanics of desire</div>
+        <div style="height:1px; flex:1; background:rgba(201,168,76,0.12);"></div>
+      </div>
+
+      <div class="chapter-card glass reveal reveal-delay-1">
+        <div class="chapter-num">Chapter Four</div>
+        <div class="chapter-title">Built to <em>Seduce</em></div>
+        <div class="chapter-hook">Seduction is not a trick you perform. It is a quality you develop, until it becomes simply who you are.</div>
+        <div class="chapter-toggle"><span>↗ Preview Chapter</span><div class="chapter-toggle-icon">+</div></div>
+        <div class="chapter-preview">
+          <div class="chapter-preview-inner">
+            <div class="preview-label">What you'll master</div>
+            <ul class="preview-bullets">
+              <li>The specific qualities women find compelling — and the anti-seductive habits that silently repel them</li>
+              <li>Why being too available is the fastest way to destroy attraction after it's formed</li>
+              <li>The Dark Attachment Codes — depth over disclosure, independence over availability</li>
+            </ul>
+            <div class="preview-excerpt">"The man who gives her everything she asks for often loses the thing she never asked for — the pull toward him she was not ready to name. Seductive men understand the value of remaining slightly out of reach."</div>
+            <a href="https://topmate.io/persuasion_academy_by_ra/2032749" class="preview-cta" target="_blank" rel="noopener">Start the Masterclass →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-card glass reveal reveal-delay-2">
+        <div class="chapter-num">Chapter Five</div>
+        <div class="chapter-title">The Fourteen Laws — <em>Weapons of Desire</em></div>
+        <div class="chapter-hook">The man who understands the psychology of attraction does not need to chase. He simply creates the conditions that make pursuit inevitable.</div>
+        <div class="chapter-toggle"><span>↗ Preview Chapter</span><div class="chapter-toggle-icon">+</div></div>
+        <div class="chapter-preview">
+          <div class="chapter-preview-inner">
+            <div class="preview-label">What you'll master</div>
+            <ul class="preview-bullets">
+              <li>14 practical attraction tactics covering investment, challenge, mystery, and influence</li>
+              <li>How restraint in pursuit creates more pull than relentless pursuit ever could</li>
+              <li>Making her invest first — the single habit that rebalances every dynamic</li>
+            </ul>
+            <div class="preview-excerpt">"Most men believe that demonstrating more interest creates more attraction. The opposite is closer to the truth. The man who is slightly harder to read, slightly harder to get, is the man she keeps thinking about."</div>
+            <a href="https://topmate.io/persuasion_academy_by_ra/2032749" class="preview-cta" target="_blank" rel="noopener">Start the Masterclass →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-card glass reveal reveal-delay-3">
+        <div class="chapter-num">Chapter Six</div>
+        <div class="chapter-title">How to Make Her <em>Addicted</em> to Talking to You</div>
+        <div class="chapter-hook">Women fall in love with their ears. The man who learns to speak to her emotions, not just her mind, holds a power that no appearance or wealth can replicate.</div>
+        <div class="chapter-toggle"><span>↗ Preview Chapter</span><div class="chapter-toggle-icon">+</div></div>
+        <div class="chapter-preview">
+          <div class="chapter-preview-inner">
+            <div class="preview-label">What you'll master</div>
+            <ul class="preview-bullets">
+              <li>Storytelling, wit, and emotional resonance — the three pillars of compelling conversation</li>
+              <li>The 100 Conversations Challenge — the practice framework that builds natural confidence</li>
+              <li>How to make her feel deeply understood without oversharing anything about yourself</li>
+            </ul>
+            <div class="preview-excerpt">"A well-told story does something that facts and opinions cannot — it creates an experience in her mind. Men who can do this hold her attention in a way that is almost impossible to walk away from."</div>
+            <a href="https://topmate.io/persuasion_academy_by_ra/2032749" class="preview-cta" target="_blank" rel="noopener">Start the Masterclass →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-card glass reveal reveal-delay-1">
+        <div class="chapter-num">Chapter Seven</div>
+        <div class="chapter-title">What She's Telling You Without <em>Words</em></div>
+        <div class="chapter-hook">She will rarely tell you she is interested. But her body, her behaviour, and her presence will. The man who learns to read these signals will never miss an opportunity again.</div>
+        <div class="chapter-toggle"><span>↗ Preview Chapter</span><div class="chapter-toggle-icon">+</div></div>
+        <div class="chapter-preview">
+          <div class="chapter-preview-inner">
+            <div class="preview-label">What you'll master</div>
+            <ul class="preview-bullets">
+              <li>The body language and behavioural cues that reveal genuine interest vs polite tolerance</li>
+              <li>Eye contact patterns, proximity signals, and the most misread sign of attraction</li>
+              <li>How to respond when you see the signals — without breaking the spell</li>
+            </ul>
+            <div class="preview-excerpt">"She will not say 'I am interested in you.' She will find reasons to stand closer. She will laugh a half-second before the joke is funny. She will touch her hair. The man who knows what to look for never has to guess."</div>
+            <a href="https://topmate.io/persuasion_academy_by_ra/2032749" class="preview-cta" target="_blank" rel="noopener">Start the Masterclass →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase III label -->
+      <div style="grid-column:1/-1; display:flex; align-items:center; gap:16px; margin:28px 0 20px;" class="reveal">
+        <div style="height:1px; flex:1; background:rgba(201,168,76,0.12);"></div>
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); opacity:0.7; white-space:nowrap;">Phase III — Conversion: From interest to investment</div>
+        <div style="height:1px; flex:1; background:rgba(201,168,76,0.12);"></div>
+      </div>
+
+      <div class="chapter-card glass reveal reveal-delay-2">
+        <div class="chapter-num">Chapter Eight</div>
+        <div class="chapter-title">The Seven Steps to <em>Making Her Yours</em></div>
+        <div class="chapter-hook">Theory without application is entertainment, not transformation. This is where everything you have learned becomes real.</div>
+        <div class="chapter-toggle"><span>↗ Preview Chapter</span><div class="chapter-toggle-icon">+</div></div>
+        <div class="chapter-preview">
+          <div class="chapter-preview-inner">
+            <div class="preview-label">What you'll master</div>
+            <ul class="preview-bullets">
+              <li>The seven-step practical framework for moving from stranger to relationship</li>
+              <li>The adjusted approach for men 25 and above — and why timing and environment change everything</li>
+              <li>How to position yourself correctly before any move is made</li>
+            </ul>
+            <div class="preview-excerpt">"The men who are most successful with women are not the ones who approach the most. They are the ones who have positioned themselves so that the approach is barely necessary — because she is already halfway there."</div>
+            <a href="https://topmate.io/persuasion_academy_by_ra/2032749" class="preview-cta" target="_blank" rel="noopener">Start the Masterclass →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-card glass reveal reveal-delay-3">
+        <div class="chapter-num">Chapter Nine</div>
+        <div class="chapter-title">Hold Her Without <em>Holding On</em></div>
+        <div class="chapter-hook">Attracting her was the beginning. Keeping her genuinely invested is where the real mastery begins.</div>
+        <div class="chapter-toggle"><span>↗ Preview Chapter</span><div class="chapter-toggle-icon">+</div></div>
+        <div class="chapter-preview">
+          <div class="chapter-preview-inner">
+            <div class="preview-label">What you'll master</div>
+            <ul class="preview-bullets">
+              <li>Four strategies for sustaining attraction long after the honeymoon phase fades</li>
+              <li>How to find quality women — and the criteria that actually matter beyond surface appeal</li>
+              <li>Keeping the spark permanently alive without manufactured drama or games</li>
+            </ul>
+            <div class="preview-excerpt">"The qualities that create attraction in the first place — independence, mystery, standards — must be maintained throughout the relationship. The men who understand this never experience the slow fade."</div>
+            <a href="https://topmate.io/persuasion_academy_by_ra/2032749" class="preview-cta" target="_blank" rel="noopener">Start the Masterclass →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase IV label -->
+      <div style="grid-column:1/-1; display:flex; align-items:center; gap:16px; margin:28px 0 20px;" class="reveal">
+        <div style="height:1px; flex:1; background:rgba(201,168,76,0.12);"></div>
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); opacity:0.7; white-space:nowrap;">Phase IV — Mastery &amp; Attachment: What destroys it, and what makes it permanent</div>
+        <div style="height:1px; flex:1; background:rgba(201,168,76,0.12);"></div>
+      </div>
+
+      <div class="chapter-card glass reveal reveal-delay-1">
+        <div class="chapter-num">Chapter Ten</div>
+        <div class="chapter-title">How Men Destroy Their Own <em>Chances</em></div>
+        <div class="chapter-hook">Most men do not fail because they never learned how to attract. They fail because they never learned what quietly destroys what they built.</div>
+        <div class="chapter-toggle"><span>↗ Preview Chapter</span><div class="chapter-toggle-icon">+</div></div>
+        <div class="chapter-preview">
+          <div class="chapter-preview-inner">
+            <div class="preview-label">What you'll master</div>
+            <ul class="preview-bullets">
+              <li>The four most destructive behavioral patterns that undo attraction silently</li>
+              <li>How to identify which pitfall has crept back in — and exactly how to correct it</li>
+              <li>Why neediness and over-investment are the most common relationship killers</li>
+            </ul>
+            <div class="preview-excerpt">"You can do everything right to build attraction and undo all of it with a single week of needy behaviour. This chapter exists so that never happens to you."</div>
+            <a href="https://topmate.io/persuasion_academy_by_ra/2032749" class="preview-cta" target="_blank" rel="noopener">Start the Masterclass →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-card glass reveal reveal-delay-2">
+        <div class="chapter-num">Chapter Eleven</div>
+        <div class="chapter-title">Words in the <em>Dark</em></div>
+        <div class="chapter-hook">Texting is not where attraction is born. It is where the impression you made in real life either survives or quietly fades away.</div>
+        <div class="chapter-toggle"><span>↗ Preview Chapter</span><div class="chapter-toggle-icon">+</div></div>
+        <div class="chapter-preview">
+          <div class="chapter-preview-inner">
+            <div class="preview-label">What you'll master</div>
+            <ul class="preview-bullets">
+              <li>Why texting cannot create attraction — and the dangerous mistake most men make</li>
+              <li>How to use messaging correctly after real-world foundations are already set</li>
+              <li>The texting behaviours that silently destroy the impression you worked to create</li>
+            </ul>
+            <div class="preview-excerpt">"The man who texts too much, too eagerly, too consistently is broadcasting the same thing in every message: I have nothing more important than this conversation. That message is never attractive."</div>
+            <a href="https://topmate.io/persuasion_academy_by_ra/2032749" class="preview-cta" target="_blank" rel="noopener">Start the Masterclass →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-card glass reveal reveal-delay-3">
+        <div class="chapter-num">Chapter Twelve</div>
+        <div class="chapter-title">How Much Does She <em>Want You</em></div>
+        <div class="chapter-hook">Attraction is only the beginning. The real question is whether she values you enough to invest in return. These tests will tell you the truth she will never say out loud.</div>
+        <div class="chapter-toggle"><span>↗ Preview Chapter</span><div class="chapter-toggle-icon">+</div></div>
+        <div class="chapter-preview">
+          <div class="chapter-preview-inner">
+            <div class="preview-label">What you'll master</div>
+            <ul class="preview-bullets">
+              <li>Five tests that reveal her true level of investment — not what she says, but what she does</li>
+              <li>How to respond intelligently to what you discover without showing your hand</li>
+              <li>Protecting yourself from one-sided dynamics before full emotional investment is made</li>
+            </ul>
+            <div class="preview-excerpt">"Interest without investment is just entertainment. Before you give her everything, you need to know whether she is genuinely in this — or simply enjoying the attention. These five tests answer that question."</div>
+            <a href="https://topmate.io/persuasion_academy_by_ra/2032749" class="preview-cta" target="_blank" rel="noopener">Start the Masterclass →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-card glass reveal reveal-delay-1 ch13-card">
+        <div class="chapter-num">Chapter Thirteen</div>
+        <div class="chapter-title">The Art of <em>Attachment</em></div>
+        <div class="chapter-hook">Attraction brings her close. Attachment makes her stay. This is the chapter where everything you have learned becomes permanent.</div>
+        <div class="chapter-toggle"><span>↗ Preview Chapter</span><div class="chapter-toggle-icon">+</div></div>
+        <div class="chapter-preview">
+          <div class="chapter-preview-inner">
+            <div class="preview-label">What you'll master</div>
+            <ul class="preview-bullets">
+              <li>The four stages of building deep emotional attachment — routine, bond, absence, reconnection</li>
+              <li>How absence, applied correctly, deepens investment rather than creating distance</li>
+              <li>The final shift — from a man she is attracted to, to a man she genuinely cannot imagine losing</li>
+            </ul>
+            <div class="preview-excerpt">"Attachment is not something you demand. It is something you architect — slowly, deliberately, across weeks and months of shared experience and deliberate space. This is the final chapter for a reason."</div>
+            <a href="https://topmate.io/persuasion_academy_by_ra/2032749" class="preview-cta" target="_blank" rel="noopener">Start the Masterclass →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── TRANSFORMATION JOURNEY ─── -->
+<section style="padding:100px 40px; position:relative; z-index:1; background:rgba(14,22,40,0.6);">
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);"></div>
+
+  <div style="max-width:1100px; margin:0 auto; text-align:center;">
+    <div class="section-eyebrow reveal" style="justify-content:center; margin-bottom:18px;">
+      <div class="section-eyebrow-line"></div>
+      <div class="section-eyebrow-text">Your 90-Day Journey</div>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <div class="section-headline reveal" style="text-align:center; margin-bottom:16px;">The man on the other side<br><em>of this programme.</em></div>
+    <p class="reveal" style="font-family:'Source Serif 4',serif; font-size:clamp(16px,1.8vw,19px); color:var(--muted); line-height:1.75; max-width:620px; margin:0 auto 80px;">Most men drift. They read something, feel inspired for three days, then slide back to where they were. This is not that. This is a specific timeline — with exact milestones, exact changes, and a destination that does not move.</p>
+
+    <!-- 4-STEP VERTICAL TIMELINE -->
+    <div style="max-width:760px; margin:0 auto; position:relative; text-align:left;">
+
+      <!-- vertical gold line -->
+      <div style="position:absolute; left:35px; top:56px; bottom:56px; width:2px; background:linear-gradient(180deg, rgba(201,168,76,0.7) 0%, rgba(201,168,76,0.5) 60%, rgba(201,168,76,0.1) 100%); pointer-events:none;"></div>
+
+      <!-- ── STEP 1: Days 1–10 ── -->
+      <div class="reveal reveal-delay-1" style="display:flex; gap:32px; align-items:flex-start; padding:0 0 64px;">
+        <div style="position:relative; z-index:2; flex-shrink:0;">
+          <div style="width:72px; height:72px; border-radius:50%; background:linear-gradient(160deg,#162240,#0A1120); border:2px solid var(--gold); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:2px; box-shadow:0 0 0 6px rgba(201,168,76,0.07), 0 0 28px rgba(201,168,76,0.2);">
+            <span style="font-family:'Playfair Display',serif; font-size:22px; font-weight:800; color:var(--gold); line-height:1;">1</span>
+          </div>
+          <!-- day badge -->
+          <div style="position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); background:var(--navy); border:1px solid rgba(201,168,76,0.4); padding:3px 10px; white-space:nowrap;">
+            <span style="font-family:'Barlow',sans-serif; font-size:8px; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold);">Day 1–10</span>
+          </div>
+        </div>
+        <div style="padding-top:8px; flex:1;">
+          <div style="font-family:'Barlow',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.26em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; opacity:0.8;">The Ignition</div>
+          <div style="font-family:'Playfair Display',serif; font-size:clamp(20px,2.2vw,26px); font-weight:800; color:var(--white); line-height:1.25; margin-bottom:14px;">You start reading.<br><em style="color:var(--gold);">The fog lifts immediately.</em></div>
+          <p style="font-family:'Source Serif 4',serif; font-size:17px; color:var(--muted); line-height:1.75; margin:0 0 14px;">Chapter One lands in the first thirty minutes. You finally understand why things went the way they did — every silence, every friendzone, every woman who chose someone who put in less effort than you. Not bad luck. A gap in knowledge that closes tonight and does not reopen.</p>
+          <p style="font-family:'Source Serif 4',serif; font-size:17px; color:var(--muted); line-height:1.75; margin:0;">By Day 10, you have read the full programme. You go back over the chapters that hit hardest. What felt like information on Day 1 now feels like memory — because you have already started seeing the patterns in the world around you.</p>
+        </div>
+      </div>
+
+      <!-- ── STEP 2: Days 20–50 ── -->
+      <div class="reveal reveal-delay-2" style="display:flex; gap:32px; align-items:flex-start; padding:0 0 64px;">
+        <div style="position:relative; z-index:2; flex-shrink:0;">
+          <div style="width:72px; height:72px; border-radius:50%; background:linear-gradient(160deg,#162240,#0A1120); border:2px solid var(--gold); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:2px; box-shadow:0 0 0 6px rgba(201,168,76,0.07), 0 0 28px rgba(201,168,76,0.2);">
+            <span style="font-family:'Playfair Display',serif; font-size:22px; font-weight:800; color:var(--gold); line-height:1;">2</span>
+          </div>
+          <div style="position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); background:var(--navy); border:1px solid rgba(201,168,76,0.4); padding:3px 10px; white-space:nowrap;">
+            <span style="font-family:'Barlow',sans-serif; font-size:8px; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold);">Day 20–50</span>
+          </div>
+        </div>
+        <div style="padding-top:8px; flex:1;">
+          <div style="font-family:'Barlow',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.26em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; opacity:0.8;">The Rebuild</div>
+          <div style="font-family:'Playfair Display',serif; font-size:clamp(20px,2.2vw,26px); font-weight:800; color:var(--white); line-height:1.25; margin-bottom:14px;">Body. Mind. Presence.<br><em style="color:var(--gold);">You start doing the work.</em></div>
+          <p style="font-family:'Source Serif 4',serif; font-size:17px; color:var(--muted); line-height:1.75; margin:0 0 14px;">Around Day 20, you turn the focus inward. The programme told you what needs to change — now you are changing it. Physical discipline. Mental frame. The way you carry yourself in a room. The over-texting stops. The over-explaining stops. You do less and the dynamic around you shifts immediately.</p>
+          <p style="font-family:'Source Serif 4',serif; font-size:17px; color:var(--muted); line-height:1.75; margin:0;">By Day 50 you are visibly, undeniably different. Physically sharper. Mentally steadier. Women you have known for months begin behaving differently around you. Not because you said the right thing — because you changed something underneath. They feel it. They cannot name it. <strong style="color:var(--white);">You can.</strong></p>
+        </div>
+      </div>
+
+      <!-- ── STEP 3: Day 70 ── -->
+      <div class="reveal reveal-delay-3" style="display:flex; gap:32px; align-items:flex-start; padding:0 0 64px;">
+        <div style="position:relative; z-index:2; flex-shrink:0;">
+          <div style="width:72px; height:72px; border-radius:50%; background:linear-gradient(160deg,#162240,#0A1120); border:2px solid var(--gold); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:2px; box-shadow:0 0 0 6px rgba(201,168,76,0.07), 0 0 28px rgba(201,168,76,0.2);">
+            <span style="font-family:'Playfair Display',serif; font-size:22px; font-weight:800; color:var(--gold); line-height:1;">3</span>
+          </div>
+          <div style="position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); background:var(--navy); border:1px solid rgba(201,168,76,0.4); padding:3px 10px; white-space:nowrap;">
+            <span style="font-family:'Barlow',sans-serif; font-size:8px; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold);">Day 70</span>
+          </div>
+        </div>
+        <div style="padding-top:8px; flex:1;">
+          <div style="font-family:'Barlow',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.26em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; opacity:0.8;">The Rotation</div>
+          <div style="font-family:'Playfair Display',serif; font-size:clamp(20px,2.2vw,26px); font-weight:800; color:var(--white); line-height:1.25; margin-bottom:14px;">You build your world.<br><em style="color:var(--gold);">On your terms. Nobody else's.</em></div>
+          <p style="font-family:'Source Serif 4',serif; font-size:17px; color:var(--muted); line-height:1.75; margin:0;">The personal notes section of the programme reveals something most men never consider — a rotation built from a position of value, not desperation. You are no longer fixated on one woman, hoping she comes around. You have options. You hold them with quiet confidence. You stop chasing anyone. You are simply living a life worth being drawn toward — and the right people feel it.</p>
+        </div>
+      </div>
+
+      <!-- ── STEP 4: Day 90 — FINAL ── -->
+      <div class="reveal reveal-delay-4" style="display:flex; gap:32px; align-items:flex-start; padding:0;">
+        <div style="position:relative; z-index:2; flex-shrink:0;">
+          <div style="width:72px; height:72px; border-radius:50%; background:linear-gradient(160deg,#1E3054,#0F1A2E); border:2px solid var(--gold2); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:2px; box-shadow:0 0 0 8px rgba(201,168,76,0.12), 0 0 50px rgba(201,168,76,0.35);">
+            <span style="font-family:'Playfair Display',serif; font-size:22px; font-weight:800; color:var(--gold2); line-height:1;">4</span>
+          </div>
+          <div style="position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); background:var(--navy); border:1px solid rgba(201,168,76,0.6); padding:3px 10px; white-space:nowrap;">
+            <span style="font-family:'Barlow',sans-serif; font-size:8px; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold2);">Day 90</span>
+          </div>
+        </div>
+        <div style="padding-top:8px; flex:1;">
+          <div style="font-family:'Barlow',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.26em; text-transform:uppercase; color:var(--gold2); margin-bottom:10px; opacity:0.9;">The Complete Man</div>
+          <div style="font-family:'Playfair Display',serif; font-size:clamp(20px,2.2vw,26px); font-weight:800; color:var(--white); line-height:1.25; margin-bottom:14px;">Attractive. Aware. Unshakeable.<br><em style="color:var(--gold2);">This is who you became.</em></div>
+          <p style="font-family:'Source Serif 4',serif; font-size:17px; color:var(--muted); line-height:1.75; margin:0 0 14px;">You know what to do. You know when to do it. You know exactly why it works. The anxiety that used to spike every time you were near a woman you actually liked — it is gone. Replaced by a calm, grounded clarity that she can feel the moment you enter a room.</p>
+          <p style="font-family:'Source Serif 4',serif; font-size:17px; color:var(--muted); line-height:1.75; margin:0;">You did not become a player. You did not become someone who runs lines or games women. <strong style="color:var(--white);">You became a man worth choosing.</strong> That is a different thing entirely — and every woman you meet from here on will sense it before you say a word.</p>
+        </div>
+      </div>
+
+    </div><!-- /timeline -->
+  </div>
+</section>
+
+<!-- ─── MID-PAGE CTA ─── -->
+<section style="padding:56px 40px; position:relative; z-index:1; text-align:center; background:rgba(14,22,40,0.4);">
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);"></div>
+  <p class="reveal" style="font-family:'Source Serif 4',serif; font-size:18px; color:var(--muted); line-height:1.7; max-width:560px; margin:0 auto 28px; font-style:italic;">Apply Chapter 3 tonight. Notice the difference tomorrow.</p>
+  <div class="reveal">
+    <a href="https://topmate.io/persuasion_academy_by_ra/2032749" class="btn-primary" target="_blank" rel="noopener" style="padding:20px 52px; font-size:13px;">Get the Masterclass →</a>
+  </div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);"></div>
+</section>
+
+
+<!-- ─── AUTHOR SECTION ─── -->
+<section style="background: rgba(14,22,40,0.5); position:relative; z-index:1; border-top: 1px solid rgba(201,168,76,0.1);">
+  <div class="author-section reveal">
+    <div>
+      <div class="author-avatar">
+        <div class="author-avatar-initials">RA</div>
+        <div class="author-avatar-label">Persuasion Academy</div>
+      </div>
+    </div>
+    <div class="author-content">
+      <div class="author-title">About the Creator</div>
+      <div class="author-name">RA</div>
+      <p class="author-bio">RA has spent 13 years studying the psychology of attraction, social dynamics, and what separates men who consistently succeed with women from those who never understand why they don't. What started as a personal obsession became a structured body of work — built not from academic theory alone, but from thousands of hours of real-world observation, study of behavioural science, and direct coaching of men at every stage. The Dark Seduction Masterclass is the distillation of everything that actually moves the needle — nothing that doesn't.</p>
+      <div class="author-stats">
+        <div class="author-stat">
+          <div class="author-stat-num">13+</div>
+          <div class="author-stat-label">Years Experience</div>
+        </div>
+        <div class="author-stat">
+          <div class="author-stat-num">50+</div>
+          <div class="author-stat-label">Studies Referenced</div>
+        </div>
+        <div class="author-stat">
+          <div class="author-stat-num">13</div>
+          <div class="author-stat-label">Chapters Built</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section class="faq-section" style="position:relative; z-index:1;" id="faq">
+  <div class="section-eyebrow reveal" style="justify-content:center;">
+    <div class="section-eyebrow-line"></div>
+    <div class="section-eyebrow-text">Common Questions</div>
+    <div class="section-eyebrow-line"></div>
+  </div>
+  <div class="section-headline reveal" style="text-align:center; margin-bottom:0;">Every question <em>answered.</em></div>
+
+  <div class="faq-list">
+    <div class="faq-item reveal">
+      <div class="faq-question">I'm not good-looking or wealthy. Does any of this actually work for average guys? <span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">The entire Masterclass is built on a well-supported premise: <strong>research consistently shows attraction is shaped more by behavioural and psychological traits than by looks or money</strong>. The variables that actually create desire — presence, frame, mystery, tension, emotional intelligence — are learnable by any man regardless of his starting point. The man who understands these principles outperforms the man with better genetics almost every time.</div></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question">I've been in the friendzone with girls I like. Why does it keep happening? <span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">The friendzone is not bad luck — it is a predictable outcome of specific behavioural patterns. <strong>Modules 4 and 5</strong> of the dashboard break down exactly what those patterns are: over-availability, lack of polarity, and the absence of romantic tension. Once you see the mechanism clearly, you will understand every instance this has happened to you — and you will know precisely what to change. This will never happen to you again in the same way.</div></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question">I've never had a girlfriend. Is this for me, or is it too advanced? <span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">This is exactly where the Masterclass is most valuable. Most programmes assume you already have experience — this one starts from the foundations. You will understand <strong>why attraction works</strong> before you attempt to apply it. Men with zero experience who work through this have gone on to get into their first relationship within weeks. The advantage of learning the system before developing bad habits is enormous.</div></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question">I get nervous and awkward around women I actually like. Will this help? <span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes — and this is one of the most common issues the Masterclass addresses directly. Anxiety around women you are attracted to almost always comes from <strong>not knowing the rules of the game</strong>. When you understand the psychology — what actually creates attraction, what she is really responding to — that uncertainty collapses. You stop improvising and start operating with clarity. Confidence is not a personality trait. It is a byproduct of competence.</div></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question">I'm an introvert. I don't approach women or do "pickup" stuff. Is this still relevant? <span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Completely. The Masterclass is not about aggressive approaches or performance. It is about becoming someone whose <strong>presence, depth, and frame</strong> naturally creates pull. Introverts who apply this system often find they need to do far less — because the man they have become is already drawing interest without effort. The system works precisely because it does not require you to act like someone you are not.</div></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question">Why can't I just learn this from YouTube or free content online? <span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">You can spend the next year watching videos, reading Reddit threads, and collecting advice that contradicts itself. Most men do exactly that — and stay in the same place. Free content is fragmented by design. It gives you enough to keep watching, never enough to actually change. <strong>The Masterclass is a sequential system</strong> where each principle builds on the last. It is the difference between collecting puzzle pieces from a hundred different boxes and sitting down with the complete picture. At ₹999 it costs less than a single date that goes nowhere. The question is not whether you can find free content. The question is how much longer you are willing to stay stuck.</div></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question">What device should I use to go through the Masterclass? <span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">The Masterclass works on any device — phone, tablet, laptop, or desktop. However, it was deliberately designed to be read on a <strong>laptop or desktop screen</strong>. The chapters are dense, structured, and meant to be absorbed — not skimmed between notifications. Reading on a large screen with no distractions is how you get the most out of this. We recommend treating each chapter like a session: sit down, close everything else, and read it properly. That is when it lands.</div></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question">Is there a refund policy? <span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes. If you work through the Masterclass and feel it did not deliver on what was promised, contact us within <strong>24 hours of purchase</strong> for a full refund, no questions asked. We offer it without hesitation — the confidence behind that guarantee is the same confidence behind every chapter of the content itself.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRICING ─── -->
+<section class="pricing" id="pricing">
+  <div class="section-eyebrow reveal" style="justify-content:center;">
+    <div class="section-eyebrow-line"></div>
+    <div class="section-eyebrow-text">Get the Masterclass</div>
+    <div class="section-eyebrow-line"></div>
+  </div>
+
+  <div class="pricing-inner">
+    <div class="price-card glass reveal">
+      <div class="price-badge">Lifetime Access — Digital</div>
+      <p class="price-card-intro" style="font-family:'Source Serif 4',serif;font-size:16px;color:var(--muted);margin-bottom:24px;line-height:1.82;">You will not be this age again. You will not have this much time, this much freedom, this many chances again. And right now you are spending it confused, repeating the same patterns, getting the same results, telling yourself it will click eventually.</p>
+      <p class="price-card-intro" style="font-family:'Source Serif 4',serif;font-size:16px;color:var(--muted);margin-bottom:24px;line-height:1.82;">It does not click on its own. That is not how this works.</p>
+      <p class="price-card-intro" style="font-family:'Source Serif 4',serif;font-size:16px;color:var(--muted);margin-bottom:24px;line-height:1.82;">Every year this goes unfixed is a year of experiences you do not get back. Not just relationships. The feeling of being wanted. Of mattering to someone. Of knowing you are the kind of man a woman thinks about when you are not in the room.</p>
+      <p class="price-card-intro" style="font-family:'Source Serif 4',serif;font-size:16px;color:var(--muted);margin-bottom:24px;line-height:1.82;">Some men figure this out at 22. Some at 38. The difference between those two men is not intelligence. It is information. And when they got it.</p>
+      <p class="price-card-intro" style="font-family:'Source Serif 4',serif;font-size:15px;color:var(--gold2);margin-bottom:28px;line-height:1.72;font-style:italic;">₹999. That is what it costs to not be the man who figures it out too late.</p>
+      <div class="urgency-banner">
+        <div class="urgency-dot"></div>
+        <div class="urgency-text">Introductory price &nbsp;·&nbsp; Will increase once early access closes</div>
+      </div>
+      <div class="price-original">₹1,999</div>
+      <div class="price-savings">You save ₹1,000</div>
+      <div class="price-amount"><sup>₹</sup>999</div>
+      <div class="price-period">One-time payment &nbsp;·&nbsp; Instant access</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li><span>13 interactive chapters. The complete system — nothing held back</span></li>
+        <li><span>The <strong>Dark Attachment Codes</strong> in full detail</span></li>
+        <li><span>Silent Language of Dominance and body language mastery</span></li>
+        <li><span>The Salesman Principle applied to seduction</span></li>
+        <li><span>Social power, neurochemistry of desire, conversation dynamics</span></li>
+        <li><span>Sequential module unlock — built to be applied, not skimmed</span></li>
+        <li><span><strong>Lifetime access</strong> on any device, anytime</span></li>
+      </ul>
+      <a href="https://topmate.io/persuasion_academy_by_ra/2032749" class="btn-primary-large" target="_blank" rel="noopener">
+        Start Tonight →
+      </a>
+      <div style="text-align:center; margin-top:10px; font-family:'Barlow',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); opacity:0.75;">One-time · ₹999 · Instant access</div>
+
+      <!-- Instant access reassurance -->
+      <p style="margin-top:14px; font-family:'Source Serif 4',serif; font-size:13px; font-style:italic; color:var(--dimmed); text-align:center; line-height:1.6;">Instant access · Any device · No downloads</p>
+      <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-top:14px; flex-wrap:wrap;">
+        <span style="font-size:11px; font-weight:600; letter-spacing:0.08em; color:var(--dimmed); display:flex; align-items:center; gap:5px;">
+          <span style="font-size:12px; opacity:0.7;">🔒</span> Secure
+        </span>
+        <span style="color:rgba(201,168,76,0.2); font-size:12px;">·</span>
+        <span style="font-size:11px; font-weight:700; letter-spacing:0.08em; color:var(--dimmed);">UPI</span>
+        <span style="color:rgba(201,168,76,0.2); font-size:12px;">·</span>
+        <span style="font-size:11px; font-weight:700; letter-spacing:0.08em; color:var(--dimmed);">Razorpay</span>
+        <span style="color:rgba(201,168,76,0.2); font-size:12px;">·</span>
+        <span style="font-size:11px; font-weight:700; letter-spacing:0.08em; color:var(--dimmed);">Cards</span>
+        <span style="color:rgba(201,168,76,0.2); font-size:12px;">·</span>
+        <span style="font-size:11px; font-weight:700; letter-spacing:0.08em; color:var(--dimmed);">Net Banking</span>
+      </div>
+
+      <!-- 24-Hour Guarantee -->
+      <div style="margin-top:28px; padding:24px 28px; border:1px solid rgba(201,168,76,0.25); background:rgba(201,168,76,0.04); display:flex; gap:20px; align-items:flex-start; text-align:left;">
+        <div style="font-size:28px; flex-shrink:0; line-height:1; margin-top:2px;">🛡</div>
+        <div>
+          <div style="font-family:'Barlow',sans-serif; font-size:12px; font-weight:800; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;">24-Hour Money-Back Guarantee</div>
+          <p style="font-family:'Source Serif 4',serif; font-size:15px; color:var(--muted); line-height:1.68; margin:0;">Work through the Masterclass tonight. If you don't feel it was worth every rupee, contact us within 24 hours for a full refund — no questions, no forms, no friction. We offer this without hesitation because the content has never needed a safety net. It is simply there for your peace of mind.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FINAL CTA ─── -->
+<section class="final-cta reveal">
+  <div class="transformation-line" style="margin-bottom:50px;"></div>
+  <div class="final-headline">You have been trying harder.</div>
+  <div class="final-headline-italic">That is the problem.</div>
+  <p class="final-sub">The man she cannot stop thinking about is not trying at all. He is not chasing, convincing, or performing. He simply became someone so compelling that interest arises on its own and stays. That man is built, not born. The Dark Seduction Masterclass is the system that builds him.</p>
+
+  <div class="hero-cta-wrap" style="margin-top:56px;">
+    <a href="https://topmate.io/persuasion_academy_by_ra/2032749" class="btn-primary" target="_blank" rel="noopener" style="padding:22px 56px; font-size:14px;">
+      Get the Masterclass &#8594;
+    </a>
+  </div>
+  <p style="margin-top:28px; font-family:'Source Serif 4',serif; font-style:italic; color:var(--dimmed); font-size:15px;">Persuasion Academy by RA &nbsp;&middot;&nbsp; Dark Seduction Masterclass</p>
+</section>
+
+
+<!-- ─── CHAPTER MODAL ─── -->
+<div id="chapterModal" role="dialog" aria-modal="true">
+  <div id="chapterModalBackdrop"></div>
+  <div id="chapterModalBox">
+    <button class="modal-close" id="modalCloseBtn" aria-label="Close">✕</button>
+    <div class="modal-chapter-num" id="modalChapterNum"></div>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-hook" id="modalHook"></div>
+    <div class="modal-label">What you'll master</div>
+    <ul class="modal-bullets" id="modalBullets"></ul>
+    <div class="modal-excerpt" id="modalExcerpt"></div>
+    <a href="https://topmate.io/persuasion_academy_by_ra/2032749" class="modal-cta" target="_blank" rel="noopener" id="modalCta">Get the Masterclass →</a>
+  </div>
+</div>
+
+<!-- ─── FLOATING MOBILE CTA ─── -->
+<div id="floatingCTA">
+  <a href="https://topmate.io/persuasion_academy_by_ra/2032749" target="_blank" rel="noopener">Get the Masterclass →</a>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer style="padding:0; border-top: 1px solid rgba(201,168,76,0.12); position:relative; z-index:1;">
+  <!-- Footer CTA strip -->
+  <div class="footer-cta-strip" style="padding:48px 60px; background: linear-gradient(90deg, rgba(14,22,40,0.9), rgba(10,17,32,0.95)); border-bottom: 1px solid rgba(201,168,76,0.08); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px;">
+    <div>
+      <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:800; color:var(--white); line-height:1.2; margin-bottom:6px;">Still deciding? <em style="color:var(--gold); font-style:italic;">The Masterclass is waiting.</em></div>
+      <div style="font-family:'Source Serif 4',serif; font-size:14px; color:var(--dimmed); font-style:italic;">One-time payment. Lifetime access. Apply tonight.</div>
+    </div>
+    <a href="https://topmate.io/persuasion_academy_by_ra/2032749" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; padding:16px 36px; background:linear-gradient(135deg,#C9A84C,#F0DC9A,#C9A84C); background-size:200% auto; color:#0A1120; font-weight:800; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; text-decoration:none; white-space:nowrap; transition:background-position 0.4s, box-shadow 0.3s;" onmouseover="this.style.backgroundPosition='right center';this.style.boxShadow='0 0 32px rgba(201,168,76,0.55)'" onmouseout="this.style.backgroundPosition='left center';this.style.boxShadow='none'">Get the Masterclass →</a>
+  </div>
+  <!-- Footer base -->
+  <div class="footer-base" style="padding:28px 60px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+    <div class="footer-brand">Persuasion Academy · Dark Seduction Masterclass</div>
+    <div style="display:flex; gap:28px; align-items:center;">
+      <a href="#chapters" style="font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--dimmed); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--dimmed)'">Chapters</a>
+      <a href="#window" style="font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--dimmed); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--dimmed)'">Results</a>
+      <a href="#faq" style="font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--dimmed); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--dimmed)'">FAQ</a>
+      <a href="research.html" style="font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); text-decoration:none; opacity:0.8;">The Research</a>
+    </div>
+    <div class="footer-copy">© 2025 Persuasion Academy by RA. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+// ─── NAV CTA — shorten text on small screens ───
+(function() {
+  const navCta = document.querySelector('a.nav-cta');
+  if (!navCta) return;
+  function updateNavCtaText() {
+    navCta.textContent = window.innerWidth <= 480 ? '₹999 →' : 'Get the Masterclass';
+  }
+  updateNavCtaText();
+  window.addEventListener('resize', updateNavCtaText);
+})();
+
+// ─── BFCACHE FIX ───
+// When the browser restores this page from bfcache (back/forward navigation),
+// the pageshow event fires with event.persisted === true. We force a reload so
+// all JS re-initialises cleanly — cursor, countdown, charts, scroll observers.
+window.addEventListener('pageshow', function(event) {
+  if (event.persisted) {
+    window.location.reload();
+  }
+});
+
+// ─── BFCACHE FIX ───
+// Forces browser to skip bfcache for this page — ensures fresh JS state
+// every time the user lands here, including via back/forward navigation.
+window.addEventListener('unload', function() {});
+
+// ─── SCROLL PROGRESS BAR ───
+const progressBar = document.getElementById('scroll-progress');
+function updateProgress() {
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  if (progressBar) progressBar.style.width = pct + '%';
+}
+window.addEventListener('scroll', updateProgress, { passive: true });
+updateProgress();
+
+
+// ─── SCROLL REVEAL ───
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => revealObserver.observe(el));
+
+// ─── CHAPTER MODAL ───
+const chapterData = [];
+document.querySelectorAll('.chapter-card').forEach(card => {
+  const num    = card.querySelector('.chapter-num')?.textContent.trim() || '';
+  const title  = card.querySelector('.chapter-title')?.innerHTML.trim() || '';
+  const hook   = card.querySelector('.chapter-hook')?.textContent.trim() || '';
+  const bullets = Array.from(card.querySelectorAll('.chapter-preview .preview-bullets li')).map(li => li.textContent.trim());
+  const excerpt = card.querySelector('.preview-excerpt')?.textContent.trim() || '';
+  chapterData.push({ num, title, hook, bullets, excerpt });
+});
+
+const modal        = document.getElementById('chapterModal');
+const modalBox     = document.getElementById('chapterModalBox');
+const backdrop     = document.getElementById('chapterModalBackdrop');
+const closeBtn     = document.getElementById('modalCloseBtn');
+const modalNum     = document.getElementById('modalChapterNum');
+const modalTitle   = document.getElementById('modalTitle');
+const modalHook    = document.getElementById('modalHook');
+const modalBullets = document.getElementById('modalBullets');
+const modalExcerpt = document.getElementById('modalExcerpt');
+
+function openModal(idx) {
+  const d = chapterData[idx];
+  if (!d) return;
+  modalNum.textContent    = d.num;
+  modalTitle.innerHTML    = d.title;
+  modalHook.textContent   = d.hook;
+  modalBullets.innerHTML  = d.bullets.map(b => `<li>${b}</li>`).join('');
+  modalExcerpt.textContent = d.excerpt;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  modalBox.scrollTop = 0;
+}
+function closeModal() {
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.chapter-card').forEach((card, idx) => {
+  card.addEventListener('click', () => openModal(idx));
+});
+closeBtn.addEventListener('click', closeModal);
+backdrop.addEventListener('click', closeModal);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+document.getElementById('modalCta').addEventListener('click', closeModal);
+
+// ─── BUTTON GLOW ───
+document.querySelectorAll('.btn-primary, .btn-primary-large').forEach(btn => {
+  btn.addEventListener('mousemove', (e) => {
+    const rect = btn.getBoundingClientRect();
+    btn.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+    btn.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+  });
+});
+
+// ─── PARALLAX ORBS ───
+if (window.innerWidth > 900) {
+  document.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 20;
+    const y = (e.clientY / window.innerHeight - 0.5) * 20;
+    document.querySelector('.orb1').style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
+    document.querySelector('.orb2').style.transform = `translate(${-x * 0.3}px, ${-y * 0.3}px)`;
+  });
+}
+
+// ─── HAMBURGER MENU ───
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileMenu   = document.getElementById('mobileMenu');
+const mobileClose  = document.getElementById('mobileClose');
+if (hamburgerBtn) {
+  hamburgerBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+  mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+}
+
+// ─── FLOATING CTA ───
+const floatingCTA = document.getElementById('floatingCTA');
+const hero = document.querySelector('.hero');
+if (floatingCTA && hero) {
+  const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      floatingCTA.classList.toggle('visible', !entry.isIntersecting);
+    });
+  }, { threshold: 0.1 });
+  heroObserver.observe(hero);
+}
+
+
+// ─── FAQ ACCORDION ───
+document.querySelectorAll('.faq-item').forEach(item => {
+  const q = item.querySelector('.faq-question');
+  q.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-icon').textContent = '+';
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      item.querySelector('.faq-icon').textContent = '×';
+    }
+  });
+});
+</script>
+</body>
+</html>
