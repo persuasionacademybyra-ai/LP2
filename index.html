@@ -1017,24 +1017,35 @@ footer {
   position: fixed;
   bottom: 0; left: 0; right: 0;
   z-index: 150;
-  padding: 14px 20px;
+  padding: 12px 16px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
   background: linear-gradient(135deg, #C9A84C 0%, #F0DC9A 50%, #C9A84C 100%);
   text-align: center;
   transform: translateY(100%);
   transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
   box-shadow: 0 -4px 32px rgba(201,168,76,0.4);
+  box-sizing: border-box;
+  width: 100%;
 }
 #floatingCTA.visible { transform: translateY(0); }
 #floatingCTA a {
+  display: block;
   color: #0A1120;
   font-weight: 800;
   font-size: 13px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 @media (max-width: 900px) {
   #floatingCTA { display: block; }
+}
+@media (max-width: 480px) {
+  #floatingCTA { padding: 10px 12px; padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
+  #floatingCTA a { font-size: 11px; letter-spacing: 0.1em; }
 }
 
 /* ─── URGENCY BANNER ─── */
@@ -1324,6 +1335,8 @@ footer {
   .benefits-grid-2col  { grid-template-columns: 1fr !important; }
   .two-men-split       { grid-template-columns: 1fr !important; }
   .two-men-split > div:nth-child(2) { display: none !important; }
+  .two-men-split > div:first-child,
+  .two-men-split > div:last-child { padding: 32px 20px !important; }
   .before-after-row    { grid-template-columns: 1fr !important; }
 
   /* ── INLINE-STYLE GRIDS (Her Reality, Pareto, What-You-Get 4-col, Product intro 2-col, Benefits) ── */
@@ -1346,8 +1359,10 @@ footer {
   }
 
   /* ── CHAPTER CARDS ── */
+  .chapters-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 14px; }
   .chapter-card { padding: 28px 22px; }
   .chapter-card.glass { grid-column: auto !important; }
+  .ch13-card { grid-column: auto !important; }
 
   /* ── FEATURE / BOOK SECTION ── */
   .feature { grid-template-columns: 1fr; gap: 48px; padding: 80px 20px; }
@@ -1389,11 +1404,16 @@ footer {
   .product-mock-col { display: block !important; }
   .product-mock-col > div:not(.mock-static-card) { display: none !important; }
   .product-mock-col .mock-static-card { display: flex !important; }
+  /* Hide browser chrome bar on mobile */
+  .product-mock-col > div[style*="border-radius:8px 8px 0 0"],
+  .product-mock-col > div[style*="border-radius: 8px 8px 0 0"] { display: none !important; }
   /* and collapse the 2-col product intro grid to 1 col */
   [style*="grid-template-columns:1fr 1fr; gap:56px"] {
     grid-template-columns: 1fr !important;
     gap: 24px !important;
   }
+  /* Fix phase label overflow on mobile */
+  [style*="white-space:nowrap"] { white-space: normal !important; font-size: 9px !important; text-align: center; }
 }
 
 /* ══════════════════════════════════════════
@@ -1457,8 +1477,10 @@ footer {
   .urgency-text { font-size: 10px; letter-spacing: 0.1em; }
   .price-original { font-size: 15px; }
   .btn-primary-large { padding: 18px 28px; font-size: 13px; letter-spacing: 0.12em; }
+  .chapters-grid { grid-template-columns: 1fr !important; }
   .chapter-card { padding: 24px 18px; }
   .chapter-title { font-size: 19px; }
+  .ch13-card { grid-column: auto !important; }
   .price-card-intro { font-size: 14px !important; line-height: 1.65 !important; margin-bottom: 18px !important; }
 
   /* Problem quote full bleed feel */

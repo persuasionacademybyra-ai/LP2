@@ -183,18 +183,47 @@ footer { padding:36px 60px; border-top:1px solid rgba(201,168,76,0.12); display:
 }
 @media (max-width:600px) {
   /* Floating CTA bar — stack vertically on small screens */
-  #floatingCTA { padding:14px 16px !important; flex-direction:column !important; gap:12px !important; align-items:stretch !important; }
+  #floatingCTA {
+    padding: 12px 16px !important;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom)) !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    align-items: stretch !important;
+  }
   #floatingCTA > div:first-child { text-align:center; }
-  #floatingCTA > a { width:100% !important; justify-content:center !important; padding:14px 20px !important; text-align:center; }
+  #floatingCTA > div:first-child span:first-child { font-size:12px !important; }
+  #floatingCTA > div:first-child span:last-child { font-size:9px !important; }
+  #floatingCTA > a {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 12px 16px !important;
+    text-align: center;
+    font-size: 11px !important;
+    letter-spacing: 0.12em !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+  }
   /* Mid-page CTA bridges — stack on small screens */
   .cta-bridge { flex-direction:column !important; }
   .cta-bridge a { width:100% !important; justify-content:center !important; }
+  /* Study grid inline styles */
+  [style*="grid-template-columns:repeat(2,1fr)"],
+  [style*="grid-template-columns: repeat(2,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
 }
 @media (max-width:480px) {
   .stat-row { grid-template-columns:1fr 1fr; }
   /* Hero eyebrow — hide decorative lines when text is long */
   .eyebrow-line { display:none; }
   .eyebrow-wrap { gap:0; }
+  /* Section padding tighten */
+  .section-pad { padding: 56px 0 !important; }
+  .r-hero { padding: 100px 16px 60px !important; }
+  .research-cta { padding: 56px 16px !important; }
+  .container { padding: 0 16px !important; }
+  /* Pull quote full bleed */
+  .pull-quote { margin-left: -16px; margin-right: -16px; border-radius: 0; }
 }
 </style>
 </head>
@@ -585,7 +614,7 @@ footer { padding:36px 60px; border-top:1px solid rgba(201,168,76,0.12); display:
 </footer>
 
 <!-- ─── FLOATING CTA ─── -->
-<div id="floatingCTA" style="position:fixed;bottom:0;left:0;right:0;z-index:200;padding:14px 40px;background:rgba(10,17,32,0.97);border-top:1px solid rgba(201,168,76,0.22);display:flex;justify-content:space-between;align-items:center;gap:16px;transform:translateY(100%);transition:transform 0.45s cubic-bezier(0.22,1,0.36,1);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);">
+<div id="floatingCTA" style="position:fixed;bottom:0;left:0;right:0;z-index:200;padding:14px 32px;box-sizing:border-box;width:100%;background:rgba(10,17,32,0.97);border-top:1px solid rgba(201,168,76,0.22);display:flex;justify-content:space-between;align-items:center;gap:16px;transform:translateY(100%);transition:transform 0.45s cubic-bezier(0.22,1,0.36,1);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);">
   <div style="flex:1;min-width:0;">
     <span style="font-family:'Barlow',sans-serif;font-size:13px;color:#B8C8E0;letter-spacing:0.04em;">The research is clear. Most men will never act on it. <span style="color:#C9A84C;font-weight:700;">Will you?</span></span>
     <span style="display:block;font-family:'Barlow',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(201,168,76,0.6);margin-top:3px;">⏳ Introductory price — will increase without notice.</span>
