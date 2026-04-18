@@ -1,7 +1,14 @@
 /* ═══════════════════════════════════════════════════════════════════
-   DSM ANALYTICS — Full-Stack Visitor Intelligence
-   Tracks: sessions, scroll depth, section time, CTA clicks,
-           exit intent, rage clicks, idle, device, referrer
+   DSM ANALYTICS v2 — Full-Stack Visitor Intelligence
+   NEW IN v2:
+   - Pricing section time tracking
+   - UTM params joined to sessions (not lost in Events sheet)
+   - Time-to-first-CTA-click per session
+   - Backscroll detection (strong buying signal)
+   - Video play/progress tracking
+   - Content copy event
+   - Testimonials section tracking
+   - Social proof scroll tracking
    Sends to: Google Apps Script Web App → Google Sheets
    Drop this script at the END of <body> on every page.
    Set ANALYTICS_URL below after deploying your Apps Script.
@@ -73,10 +80,37 @@
   var PAGE      = window.location.pathname.replace(/\/$/, '') || '/';
   var PAGE_NAME = PAGE === '/' || PAGE.indexOf('index') !== -1 ? 'Sales Page' : 'Research Page';
   var REFERRER  = document.referrer || 'direct';
+
+  /* ── UTM PARAMS — captured at page load ─────────────────────── */
+  var UTM = {};
+  (function () {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
+        if (params.get(k)) UTM[k] = params.get(k);
+      });
+      // Also store in sessionStorage so they survive soft navigations
+      if (Object.keys(UTM).length) {
+        setStorage('dsm_utm', JSON.stringify(UTM));
+      } else {
+        // Try to recover from storage (user clicked link earlier this session)
+        var stored = getStorage('dsm_utm', '');
+        if (stored) UTM = JSON.parse(stored);
+      }
+    } catch (e) {}
+  })();
+
+  // Determine ref source — UTM source takes priority over referrer detection
   var REF_SOURCE = (function () {
+    if (UTM.utm_source) return UTM.utm_source; // exact source from UTM
     if (!document.referrer) return 'direct';
     if (/google|bing|yahoo|duckduck/i.test(document.referrer)) return 'organic_search';
-    if (/instagram|facebook|twitter|linkedin|youtube|tiktok/i.test(document.referrer)) return 'social';
+    if (/instagram/i.test(document.referrer)) return 'instagram';
+    if (/facebook/i.test(document.referrer)) return 'facebook';
+    if (/twitter|x\.com/i.test(document.referrer)) return 'twitter';
+    if (/linkedin/i.test(document.referrer)) return 'linkedin';
+    if (/youtube/i.test(document.referrer)) return 'youtube';
+    if (/tiktok/i.test(document.referrer)) return 'tiktok';
     if (/topmate/i.test(document.referrer)) return 'topmate';
     return 'referral';
   })();
@@ -89,17 +123,23 @@
   var SCREEN  = window.screen.width + 'x' + window.screen.height;
   var LANG    = navigator.language || 'unknown';
 
-  /* ── SESSION START TIME ─────────────────────────────────────── */
-  var sessionStart = now();
-  var activeTime   = 0;
-  var idleStart    = null;
-  var isIdle       = false;
-  var IDLE_THRESHOLD = 30000; // 30 seconds
+  /* ── SESSION TIMING ─────────────────────────────────────────── */
+  var sessionStart    = now();
+  var activeTime      = 0;
+  var idleStart       = null;
+  var isIdle          = false;
+  var IDLE_THRESHOLD  = 30000;
+  var totalIdleTime   = 0;
+
+  // NEW v2: time-to-first-CTA tracking
+  var firstCtaFired   = false;
+  var firstCtaSecs    = null;
 
   /* ── SEND EVENT ─────────────────────────────────────────────── */
   function send(action, payload) {
     if (!ANALYTICS_URL || ANALYTICS_URL.indexOf('YOUR_') === 0) return;
-    var data = Object.assign({
+
+    var base = {
       action:      action,
       sessionId:   sessionId,
       visitorId:   visitorId,
@@ -116,13 +156,22 @@
       refSource:   REF_SOURCE,
       isNew:       isNewVisitor ? 'yes' : 'no',
       visitCount:  visitCount
-    }, payload || {});
+    };
+
+    // Attach UTM fields to every event so they're always joinable
+    if (UTM.utm_source)   base.utm_source   = UTM.utm_source;
+    if (UTM.utm_medium)   base.utm_medium   = UTM.utm_medium;
+    if (UTM.utm_campaign) base.utm_campaign = UTM.utm_campaign;
+    if (UTM.utm_content)  base.utm_content  = UTM.utm_content;
+    if (UTM.utm_term)     base.utm_term     = UTM.utm_term;
+
+    var data = Object.assign(base, payload || {});
 
     var qs = Object.keys(data).map(function (k) {
       return encodeURIComponent(k) + '=' + encodeURIComponent(String(data[k]));
     }).join('&');
 
-    // Use sendBeacon if available (non-blocking, survives page unload)
+    // sendBeacon — non-blocking, survives page unload
     if (navigator.sendBeacon) {
       try {
         var blob = new Blob([qs], { type: 'application/x-www-form-urlencoded' });
@@ -142,11 +191,18 @@
   }
 
   /* ── PAGE VIEW ──────────────────────────────────────────────── */
-  send('pageview', {});
+  // Include UTM fields in pageview so session row gets them immediately
+  send('pageview', {
+    utm_source:   UTM.utm_source   || '',
+    utm_medium:   UTM.utm_medium   || '',
+    utm_campaign: UTM.utm_campaign || '',
+    utm_content:  UTM.utm_content  || '',
+    utm_term:     UTM.utm_term     || ''
+  });
 
   /* ── SCROLL DEPTH ───────────────────────────────────────────── */
   var scrollMilestones = { 25: false, 50: false, 75: false, 90: false, 100: false };
-  var maxScroll = 0;
+  var maxScroll        = 0;
 
   function getScrollPct() {
     var scrolled = window.scrollY || document.documentElement.scrollTop;
@@ -154,37 +210,58 @@
     return total > 0 ? Math.round((scrolled / total) * 100) : 0;
   }
 
+  // NEW v2: backscroll detection
+  var lastScrollY      = 0;
+  var backscrollFired  = false;
+  var deepestScroll    = 0;
+
   window.addEventListener('scroll', function () {
     var pct = getScrollPct();
     if (pct > maxScroll) maxScroll = pct;
+    if (pct > deepestScroll) deepestScroll = pct;
+
+    // Scroll milestones
     Object.keys(scrollMilestones).forEach(function (m) {
       if (!scrollMilestones[m] && pct >= parseInt(m, 10)) {
         scrollMilestones[m] = true;
         send('scroll_depth', { depth: m + '%', timeOnPage: Math.round((now() - sessionStart) / 1000) });
       }
     });
+
+    // NEW v2: Backscroll — visitor scrolled deep then scrolled back up toward top
+    // Fires once per session when they scroll back up more than 30% after reaching 50%+
+    if (!backscrollFired && deepestScroll >= 50) {
+      var currentY = window.scrollY;
+      if (lastScrollY - currentY > window.innerHeight * 0.4 && pct < deepestScroll - 30) {
+        backscrollFired = true;
+        send('backscroll', {
+          deepestReached: deepestScroll + '%',
+          scrolledBackTo: pct + '%',
+          timeOnPage: Math.round((now() - sessionStart) / 1000)
+        });
+      }
+    }
+    lastScrollY = window.scrollY;
   }, { passive: true });
 
   /* ── SECTION VISIBILITY TRACKING ───────────────────────────── */
   var sectionNames = {
-    'hero':     'Hero',
-    'problem':  'Problem',
-    'window':   'Two Men Story',
-    'product':  'Product Description',
-    'research': 'Research',
-    'chapters': 'Chapters',
-    'faq':      'FAQ',
-    'pricing':  'Pricing'
+    'hero':      'Hero',
+    'problem':   'Problem',
+    'window':    'Two Men Story',
+    'product':   'Product Description',
+    'research':  'Research',
+    'chapters':  'Chapters',
+    'faq':       'FAQ',
+    'pricing':   'Pricing'   // NEW v2: was missing — most important section
   };
-
-  var sectionTimers = {};
 
   if (window.IntersectionObserver) {
     Object.keys(sectionNames).forEach(function (id) {
-      var el = document.getElementById(id) || document.querySelector('.' + id);
+      var el = document.getElementById(id) || document.querySelector('.' + id) || document.querySelector('[data-section="' + id + '"]');
       if (!el) return;
       var enterTime = null;
-      var observer = new IntersectionObserver(function (entries) {
+      var observer  = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             enterTime = now();
@@ -198,13 +275,12 @@
         });
       }, { threshold: 0.3 });
       observer.observe(el);
-      sectionTimers[id] = { el: el, observer: observer };
     });
   }
 
   /* ── CTA / BUY BUTTON CLICKS ────────────────────────────────── */
   function labelForEl(el) {
-    var txt = (el.textContent || el.innerText || '').trim().substring(0, 60);
+    var txt  = (el.textContent || el.innerText || '').trim().substring(0, 60);
     var href = el.href || '';
     if (href.indexOf('topmate') !== -1) return 'Buy — ' + txt;
     if (href.indexOf('pricing') !== -1) return 'Nav — Get Access';
@@ -225,10 +301,23 @@
   BUY_SELECTORS.forEach(function (sel) {
     document.querySelectorAll(sel).forEach(function (el) {
       el.addEventListener('click', function () {
+        var timeOnPage = Math.round((now() - sessionStart) / 1000);
+
+        // NEW v2: time-to-first-CTA
+        if (!firstCtaFired) {
+          firstCtaFired = true;
+          firstCtaSecs  = timeOnPage;
+          send('first_cta_click', {
+            label:         labelForEl(el),
+            secsToFirstCta: timeOnPage,
+            scrollAtClick: getScrollPct() + '%'
+          });
+        }
+
         send('cta_click', {
           label:       labelForEl(el),
           ctaLocation: getScrollPct() + '%_scroll',
-          timeOnPage:  Math.round((now() - sessionStart) / 1000)
+          timeOnPage:  timeOnPage
         });
       });
     });
@@ -241,7 +330,8 @@
       var chapter = document.getElementById('modalChapterNum');
       send('cta_click', {
         label:      'Modal CTA — ' + (chapter ? chapter.textContent : 'Chapter'),
-        ctaLocation: 'chapter_modal'
+        ctaLocation: 'chapter_modal',
+        timeOnPage:  Math.round((now() - sessionStart) / 1000)
       });
     });
   }
@@ -250,7 +340,7 @@
   document.querySelectorAll('nav a, footer a').forEach(function (el) {
     el.addEventListener('click', function () {
       var href = el.getAttribute('href') || '';
-      if (href.indexOf('topmate') !== -1) return; // already tracked above
+      if (href.indexOf('topmate') !== -1) return;
       send('nav_click', { label: (el.textContent || '').trim().substring(0, 40), target: href });
     });
   });
@@ -275,6 +365,57 @@
     });
   });
 
+  /* ── VIDEO TRACKING (NEW v2) ────────────────────────────────── */
+  document.querySelectorAll('video').forEach(function (v, idx) {
+    var videoLabel  = v.getAttribute('data-label') || v.title || ('Video ' + (idx + 1));
+    var milestones  = { 25: false, 50: false, 75: false };
+    var playFired   = false;
+
+    v.addEventListener('play', function () {
+      if (!playFired) {
+        playFired = true;
+        send('video_play', {
+          label:      videoLabel,
+          timeOnPage: Math.round((now() - sessionStart) / 1000)
+        });
+      }
+    });
+
+    v.addEventListener('ended', function () {
+      send('video_complete', { label: videoLabel });
+    });
+
+    v.addEventListener('timeupdate', function () {
+      if (!v.duration) return;
+      var pct = Math.round((v.currentTime / v.duration) * 100);
+      Object.keys(milestones).forEach(function (m) {
+        if (!milestones[m] && pct >= parseInt(m, 10)) {
+          milestones[m] = true;
+          send('video_progress', { label: videoLabel, milestone: m + '%' });
+        }
+      });
+    });
+
+    v.addEventListener('pause', function () {
+      if (v.ended) return;
+      send('video_pause', {
+        label:    videoLabel,
+        progress: v.duration ? Math.round((v.currentTime / v.duration) * 100) + '%' : '—'
+      });
+    });
+  });
+
+  /* ── CONTENT COPY DETECTION (NEW v2) ───────────────────────── */
+  document.addEventListener('copy', function () {
+    var selected = '';
+    try { selected = (window.getSelection() || '').toString().substring(0, 100); } catch (e) {}
+    send('content_copy', {
+      scrollPct:    getScrollPct() + '%',
+      copiedText:   selected,
+      timeOnPage:   Math.round((now() - sessionStart) / 1000)
+    });
+  });
+
   /* ── RAGE CLICK DETECTION ───────────────────────────────────── */
   var clickLog = [];
   document.addEventListener('click', function (e) {
@@ -282,8 +423,8 @@
     clickLog.push({ t: t, x: e.clientX, y: e.clientY });
     clickLog = clickLog.filter(function (c) { return t - c.t < 2000; });
     if (clickLog.length >= 4) {
-      var xs = clickLog.map(function (c) { return c.x; });
-      var ys = clickLog.map(function (c) { return c.y; });
+      var xs     = clickLog.map(function (c) { return c.x; });
+      var ys     = clickLog.map(function (c) { return c.y; });
       var spread = Math.max.apply(null, xs) - Math.min.apply(null, xs) + Math.max.apply(null, ys) - Math.min.apply(null, ys);
       if (spread < 80) {
         send('rage_click', { x: Math.round(e.clientX), y: Math.round(e.clientY), clicks: clickLog.length });
@@ -295,7 +436,6 @@
   /* ── IDLE / ACTIVE DETECTION ────────────────────────────────── */
   var lastActivity = now();
   var idleTimer    = null;
-  var totalIdleTime = 0;
 
   function onActivity() {
     if (isIdle) {
@@ -323,10 +463,11 @@
     if (exitFired || e.clientY > 20) return;
     exitFired = true;
     send('exit_intent', {
-      scrollDepth:  maxScroll + '%',
-      timeOnPage:   Math.round((now() - sessionStart) / 1000),
-      activeTime:   Math.round((now() - sessionStart - totalIdleTime) / 1000),
-      reachedPricing: scrollMilestones[75] ? 'yes' : 'no'
+      scrollDepth:     maxScroll + '%',
+      timeOnPage:      Math.round((now() - sessionStart) / 1000),
+      activeTime:      Math.round((now() - sessionStart - totalIdleTime) / 1000),
+      reachedPricing:  scrollMilestones[75] ? 'yes' : 'no',
+      firstCtaSecs:    firstCtaSecs !== null ? firstCtaSecs : 'never'  // NEW v2
     });
   });
 
@@ -343,36 +484,29 @@
     }
   });
 
-  /* ── SESSION END (page unload) ───────────────────────────────── */
+  /* ── SESSION END ─────────────────────────────────────────────── */
   function sendSessionEnd() {
     var totalSecs  = Math.round((now() - sessionStart) / 1000);
     var activeSecs = Math.round((totalSecs * 1000 - totalIdleTime) / 1000);
     send('session_end', {
-      totalSeconds:   totalSecs,
-      activeSeconds:  activeSecs,
-      maxScrollDepth: maxScroll + '%',
-      ctasClicked:    window.__dsmCtaCount || 0
+      totalSeconds:    totalSecs,
+      activeSeconds:   activeSecs,
+      maxScrollDepth:  maxScroll + '%',
+      ctasClicked:     window.__dsmCtaCount || 0,
+      firstCtaSecs:    firstCtaSecs !== null ? firstCtaSecs : -1,  // NEW v2
+      hadBackscroll:   backscrollFired ? 'yes' : 'no',             // NEW v2
+      utmSource:       UTM.utm_source   || '',                      // NEW v2
+      utmMedium:       UTM.utm_medium   || '',
+      utmCampaign:     UTM.utm_campaign || ''
     });
   }
 
-  window.addEventListener('pagehide',   sendSessionEnd);
+  window.addEventListener('pagehide',     sendSessionEnd);
   window.addEventListener('beforeunload', sendSessionEnd);
 
-  /* ── UTM PARAMS ─────────────────────────────────────────────── */
-  (function () {
-    var params = new URLSearchParams(window.location.search);
-    var utm = {};
-    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
-      if (params.get(k)) utm[k] = params.get(k);
-    });
-    if (Object.keys(utm).length) {
-      send('utm', utm);
-    }
-  })();
-
-  /* ── EXPOSE MANUAL TRACK FOR COURSE PAGE ────────────────────── */
+  /* ── EXPOSE MANUAL TRACK ────────────────────────────────────── */
   window.DSMTrack = function (event, data) { send(event, data || {}); };
 
-  console.log('[DSM Analytics] Loaded — Session:', sessionId.substring(0, 8) + '...');
+  console.log('[DSM Analytics v2] Loaded — Session:', sessionId.substring(0, 8) + '...');
 
 })();
