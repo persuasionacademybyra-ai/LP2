@@ -751,5 +751,34 @@ new Chart(document.getElementById('attachChart'), {
 });
 </script>
 <script src="analytics.js"></script>
+
+<script>
+// ── SOURCE TRACKING ──────────────────────────────────────────────
+// Same tracking script as landing page.
+// Source tag travels from landing page → research page → checkout automatically.
+// ─────────────────────────────────────────────────────────────────
+(function() {
+  const params  = new URLSearchParams(window.location.search);
+  const source  = params.get('source') || 'organic';
+  const TARGET  = 'https://www.persuasionacademybyra.com';
+
+  function tagLinks() {
+    document.querySelectorAll('a').forEach(function(a) {
+      const href = a.getAttribute('href') || '';
+      if (href.startsWith(TARGET) || href === TARGET) {
+        const url = new URL(href.startsWith('http') ? href : 'https:' + href);
+        url.searchParams.set('source', source);
+        a.setAttribute('href', url.toString());
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', tagLinks);
+  } else {
+    tagLinks();
+  }
+})();
+</script>
 </body>
 </html>

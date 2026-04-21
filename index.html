@@ -3064,5 +3064,47 @@ document.querySelectorAll('.faq-item').forEach(item => {
 });
 </script>
 <script src="analytics.js"></script>
+
+<script>
+// ── SOURCE TRACKING ──────────────────────────────────────────────
+// Reads ?source= from the URL (added by whoever shared this link)
+// and automatically appends it to every checkout button on this page.
+//
+// How each source is set:
+//   Instagram DM link  →  share: https://www.persuasionacademybyra.com?source=dm
+//   Instagram Bio link →  share: https://www.persuasionacademybyra.com?source=direct
+//   Free course CTA    →  link:  https://www.persuasionacademybyra.com?source=free_course
+//   Email sequence     →  link:  https://www.persuasionacademybyra.com?source=email
+//   No tag at all      →  automatically tagged as: organic
+// ─────────────────────────────────────────────────────────────────
+(function() {
+  const params  = new URLSearchParams(window.location.search);
+  const source  = params.get('source') || 'organic';
+  const TARGET  = 'https://www.persuasionacademybyra.com';
+
+  function tagLinks() {
+    document.querySelectorAll('a').forEach(function(a) {
+      const href = a.getAttribute('href') || '';
+      // Tag checkout links
+      if (href.startsWith(TARGET) || href === TARGET) {
+        const url = new URL(href.startsWith('http') ? href : 'https:' + href);
+        url.searchParams.set('source', source);
+        a.setAttribute('href', url.toString());
+      }
+      // Also carry source forward to research page
+      if (href === 'research.html' || href.startsWith('research.html')) {
+        a.setAttribute('href', 'research.html?source=' + source);
+      }
+    });
+  }
+
+  // Run once DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', tagLinks);
+  } else {
+    tagLinks();
+  }
+})();
+</script>
 </body>
 </html>
